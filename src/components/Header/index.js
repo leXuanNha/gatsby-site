@@ -1,5 +1,5 @@
-// import PropTypes from "prop-types"
 import React from "react"
+// import PropTypes from "prop-types"
 import { Link } from 'gatsby'
 import Image from "../Images";
 
@@ -31,9 +31,11 @@ const Header = () => (
 
           <div className="topbar-child2">
             <div className="header-wrapicon2 m-r-13">
-              <Image imgName='imgCartHeader' className='img-cart-header' />
-              {/* <img src="images/icons/icon-header-02.png" className="header-icon1 js-show-header-dropdown" alt="ICON" /> */}
-              <span className="header-icons-noti">0</span>
+              <Link to="/cart/">
+                <Image imgName='imgCartHeader' className='img-cart-header' />
+                {/* <img src="images/icons/icon-header-02.png" className="header-icon1 js-show-header-dropdown" alt="ICON" /> */}
+                <span className="header-icons-noti">0</span>
+              </Link>
             </div>
           </div>
         </div>
@@ -73,7 +75,7 @@ const Header = () => (
                 </li>
 
                 <li>
-                  <a href="contact.html">Contact</a>
+                  <Link to="/contact/">Contact</Link>
                 </li>
               </ul>
             </nav>

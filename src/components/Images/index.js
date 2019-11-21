@@ -32,6 +32,13 @@ const Image = ({ ...props }) => {
             ...GatsbyImageSharpFluid
           }
         }
+      },
+      imgCart: file(relativePath: { eq: "item-10.jpg" }) {
+        childImageSharp {
+          fluid {
+            ...GatsbyImageSharpFluid
+          }
+        }
       }
     }
   `)

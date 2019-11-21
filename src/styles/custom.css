@@ -71,3 +71,47 @@
     opacity: 1;
   }
 }
+
+.tag-list-wrapper {
+  text-align: center;
+  margin: 35px 0;
+}
+
+.tee-tag-item {
+  display: inline-block;
+  height: 28px;
+  line-height: 28px;
+  padding: 0 10px;
+  border-radius: 2px;
+  background: #f5f8fa;
+  margin: 0 10px 10px 0;
+  color: #293542;
+  font-size: 14px;
+  font-family: Montserrat-Medium;
+  cursor: pointer;
+}
+
+.tee-tag-item:hover {
+  background: #293542;
+  color: #fff;
+  opacity: 0.7;
+}
+
+.tee-tag-item.tag-selected {
+  background: #293542;
+  color: #fff;
+}
+
+.cart-total {
+  border-bottom: none;
+  text-align: right;
+  padding: 20px 30px;
+}
+
+.cart-btn-group {
+  justify-content: flex-end;
+}
+
+.cart-btn-group > div {
+  margin-left: 10px;
+}
