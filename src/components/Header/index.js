@@ -1,5 +1,6 @@
 // import PropTypes from "prop-types"
 import React from "react"
+import { Link } from 'gatsby'
 import Image from "../Images";
 
 const Header = () => (
@@ -43,16 +44,16 @@ const Header = () => (
             <nav className="menu">
               <ul className="main_menu">
                 <li>
-                  <a href="index.html">Home</a>
-                  <ul className="sub_menu">
+                  <Link to="/">Home</Link>
+                  {/* <ul className="sub_menu">
                     <li><a href="index.html">Homepage V1</a></li>
                     <li><a href="home-02.html">Homepage V2</a></li>
                     <li><a href="home-03.html">Homepage V3</a></li>
-                  </ul>
+                  </ul> */}
                 </li>
 
                 <li>
-                  <a href="product.html">Shop</a>
+                  <Link to="/products/">Shop</Link>
                 </li>
 
                 <li className="sale-noti">
