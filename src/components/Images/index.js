@@ -39,6 +39,13 @@ const Image = ({ ...props }) => {
             ...GatsbyImageSharpFluid
           }
         }
+      },
+      imgProductDetail: file(relativePath: { eq: "product-detail-01.jpg" }) {
+        childImageSharp {
+          fluid {
+            ...GatsbyImageSharpFluid
+          }
+        }
       }
     }
   `)

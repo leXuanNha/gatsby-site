@@ -113,7 +113,7 @@ a:focus {
 
 a:hover {
   text-decoration: none !important;
-  color: #e65540;
+  color: #e65540 !important;
 }
 
 /* ------------------------------------ */
@@ -654,6 +654,7 @@ iframe {
   position: absolute;
   left: 52px;
   top: 50%;
+  width: 120px;
   -webkit-transform: translateY(-50%);
   -moz-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
@@ -1004,6 +1005,7 @@ li.sale-noti > a {
 -----------------------------------------------------------*/
 .logo-mobile {
   display: block;
+  width: 120px;
 }
 
 .logo-mobile img {

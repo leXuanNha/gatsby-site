@@ -3,9 +3,83 @@ import React from "react"
 import { Link } from 'gatsby'
 import Image from "../Images";
 
-const Header = () => (
-  <React.Fragment>
-    <div className="flex-c-m size22 bg0 s-text21 pos-relative">
+class Header extends React.Component {
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll);
+    document.getElementsByClassName("btn-show-menu-mobile")[0].addEventListener("click", this.toggleMobileMenu);
+  }
+
+  handleScroll = () => {
+    if (window.pageYOffset > 133) {
+      document.getElementsByClassName('fixed-header2')[0].style.visibility = 'visible';
+      document.getElementsByClassName('fixed-header2')[0].style.top = 0;
+    } else {
+      document.getElementsByClassName('fixed-header2')[0].style.visibility = 'hidden';
+      document.getElementsByClassName('fixed-header2')[0].style.top = '-70px';
+    }
+  }
+
+  toggleMobileMenu = () => {
+    document.getElementsByClassName("btn-show-menu-mobile")[0].classList.toggle("is-active");
+    console.log('isActive', document.getElementsByClassName("btn-show-menu-mobile")[0].classList.contains("is-active"));
+    if (document.getElementsByClassName("btn-show-menu-mobile")[0].classList.contains("is-active")) {
+      document.getElementsByClassName("wrap-side-menu")[0].style.display = 'block';
+    } else {
+      document.getElementsByClassName("wrap-side-menu")[0].style.display = 'none';
+    }
+  }
+
+  render() {
+    return (<React.Fragment>
+      <div className="wrap_header fixed-header2 trans-0-4">
+        <a href="index.html" className="logo">
+          <Image imgName='imgLogo' />
+        </a>
+
+        <div className="wrap_menu">
+          <nav className="menu">
+            <ul className="main_menu">
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/products/">Shop</Link>
+              </li>
+
+              <li className="sale-noti">
+                <a href="product.html">Sale</a>
+              </li>
+
+              <li>
+                <a href="cart.html">Features</a>
+              </li>
+
+              <li>
+                <a href="blog.html">Blog</a>
+              </li>
+
+              <li>
+                <a href="about.html">About</a>
+              </li>
+
+              <li>
+                <Link to="/contact/">Contact</Link>
+              </li>
+            </ul>
+          </nav>
+        </div>
+
+        <div className="header-icons">
+          <div className="header-wrapicon2">
+            <Link to="/cart/">
+              <Image imgName='imgCartHeader' className='img-cart-header' />
+              <span className="header-icons-noti">0</span>
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      {/* <div className="flex-c-m size22 bg0 s-text21 pos-relative">
       20% off everything!
 		<a href="product.html" className="s-text22 hov6 p-l-5">
         Shop Now
@@ -14,77 +88,143 @@ const Header = () => (
       <button className="flex-c-m pos2 size23 colorwhite eff3 trans-0-4 btn-romove-top-noti">
         <i className="fa fa-remove fs-13" aria-hidden="true"></i>
       </button>
-    </div>
+    </div> */}
 
-    <header className="header2">
-      <div className="container-menu-header-v2 p-t-26">
-        <div className="topbar2">
-          <div className="topbar-social">
-            <a href="#" className="topbar-social-item fa fa-facebook"></a>
-            <a href="#" className="topbar-social-item fa fa-instagram"></a>
+      <header className="header2">
+        <div className="container-menu-header-v2 p-t-26">
+          <div className="topbar2">
+            <div className="topbar-social">
+              <a href="#" className="topbar-social-item fa fa-facebook"></a>
+              <a href="#" className="topbar-social-item fa fa-instagram"></a>
+            </div>
+
+            <a href="index.html" className="logo2">
+              {/* <img src="../../images/icons/logo.png" alt="IMG-LOGO" /> */}
+              <Image imgName='imgLogo' />
+            </a>
+
+            <div className="topbar-child2">
+              <div className="header-wrapicon2 m-r-13">
+                <Link to="/cart/">
+                  <Image imgName='imgCartHeader' className='img-cart-header' />
+                  {/* <img src="images/icons/icon-header-02.png" className="header-icon1 js-show-header-dropdown" alt="ICON" /> */}
+                  <span className="header-icons-noti">0</span>
+                </Link>
+              </div>
+            </div>
           </div>
 
-          <a href="index.html" className="logo2">
-            {/* <img src="../../images/icons/logo.png" alt="IMG-LOGO" /> */}
-            <Image imgName='imgLogo' />
-          </a>
+          <div className="wrap_header">
 
-          <div className="topbar-child2">
-            <div className="header-wrapicon2 m-r-13">
-              <Link to="/cart/">
-                <Image imgName='imgCartHeader' className='img-cart-header' />
-                {/* <img src="images/icons/icon-header-02.png" className="header-icon1 js-show-header-dropdown" alt="ICON" /> */}
-                <span className="header-icons-noti">0</span>
-              </Link>
+            <div className="wrap_menu">
+              <nav className="menu">
+                <ul className="main_menu">
+                  <li>
+                    <Link to="/">Home</Link>
+                  </li>
+                  <li>
+                    <Link to="/products/">Shop</Link>
+                  </li>
+
+                  <li className="sale-noti">
+                    <a href="product.html">Sale</a>
+                  </li>
+
+                  <li>
+                    <a href="cart.html">Features</a>
+                  </li>
+
+                  <li>
+                    <a href="blog.html">Blog</a>
+                  </li>
+
+                  <li>
+                    <a href="about.html">About</a>
+                  </li>
+
+                  <li>
+                    <Link to="/contact/">Contact</Link>
+                  </li>
+                </ul>
+              </nav>
             </div>
           </div>
         </div>
 
-        <div className="wrap_header">
+        <div className="wrap_header_mobile">
+          <a href="index.html" className="logo-mobile">
+            <Image imgName='imgLogo' />
+          </a>
 
-          <div className="wrap_menu">
-            <nav className="menu">
-              <ul className="main_menu">
-                <li>
-                  <Link to="/">Home</Link>
-                  {/* <ul className="sub_menu">
-                    <li><a href="index.html">Homepage V1</a></li>
-                    <li><a href="home-02.html">Homepage V2</a></li>
-                    <li><a href="home-03.html">Homepage V3</a></li>
-                  </ul> */}
-                </li>
+          <div className="btn-show-menu">
+            <div className="header-icons-mobile">
+              <div className="header-wrapicon2">
+                <Link to="/cart/">
+                  <Image imgName='imgCartHeader' className='img-cart-header' />
+                  <span className="header-icons-noti">0</span>
+                </Link>
+              </div>
+            </div>
 
-                <li>
-                  <Link to="/products/">Shop</Link>
-                </li>
-
-                <li className="sale-noti">
-                  <a href="product.html">Sale</a>
-                </li>
-
-                <li>
-                  <a href="cart.html">Features</a>
-                </li>
-
-                <li>
-                  <a href="blog.html">Blog</a>
-                </li>
-
-                <li>
-                  <a href="about.html">About</a>
-                </li>
-
-                <li>
-                  <Link to="/contact/">Contact</Link>
-                </li>
-              </ul>
-            </nav>
+            <div className="btn-show-menu-mobile hamburger hamburger--squeeze">
+              <span className="hamburger-box">
+                <span className="hamburger-inner"></span>
+              </span>
+            </div>
           </div>
         </div>
-      </div>
-    </header>
-  </React.Fragment>
-)
+
+        <div className="wrap-side-menu" >
+          <nav className="side-menu">
+            <ul className="main-menu">
+              <li className="item-topbar-mobile p-l-20 p-t-8 p-b-8">
+                <span className="topbar-child1">
+                  Free shipping for standard order over $100
+						    </span>
+              </li>
+
+              <li className="item-topbar-mobile p-l-10">
+                <div className="topbar-social-mobile">
+                  <a href="#" className="topbar-social-item fa fa-facebook"></a>
+                  <a href="#" className="topbar-social-item fa fa-instagram"></a>
+                </div>
+              </li>
+
+              <li className="item-menu-mobile">
+                <Link to="/">Home</Link>
+              </li>
+
+              <li className="item-menu-mobile">
+                <Link to="/products/">Shop</Link>
+              </li>
+
+              <li className="item-menu-mobile">
+                <a href="product.html">Sale</a>
+              </li>
+
+              <li className="item-menu-mobile">
+                <a href="cart.html">Features</a>
+              </li>
+
+              <li className="item-menu-mobile">
+                <a href="blog.html">Blog</a>
+              </li>
+
+              <li className="item-menu-mobile">
+                <a href="about.html">About</a>
+              </li>
+
+              <li className="item-menu-mobile">
+                <Link to="/contact/">Contact</Link>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+    </React.Fragment>
+    )
+  }
+}
 
 Header.propTypes = {
 

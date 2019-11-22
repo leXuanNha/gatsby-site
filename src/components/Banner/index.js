@@ -2,7 +2,7 @@ import React from 'react'
 
 const Banner = () => (
   <div className="banner">
-    <h2 className="caption1-slide1 xl-text2 t-center bo14 p-b-6 m-b-22">
+    <h2 className="caption1-slide1 xl-text4 t-center bo14 p-b-6 m-b-22">
       Leather Bags
     </h2>
 

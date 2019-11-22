@@ -7968,6 +7968,15 @@ TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
   text-transform: uppercase;
 }
 
+.xl-text4 {
+  font-family: Poppins-Black;
+  font-size: 60px;
+  color: white;
+  line-height: 1.2;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
 /*[ Color ]
 ///////////////////////////////////////////////////////////
 */

@@ -137,3 +137,37 @@
   color: #fff;
   background-color: #000;
 }
+
+.product-detail-main-img {
+  max-height: 560px;
+  overflow: hidden;
+}
+
+.product-detail-sm-block {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+
+.product-detail-sm-img {
+  width: 23%;
+  height: 110px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 3px solid transparent;
+}
+
+.product-detail-sm-img:hover,
+.product-detail-sm-img.active {
+  border: 3px solid #888;
+}
+
+.btn-show-menu-mobile {
+  position: relative;
+  top: 3px;
+}
+
+.item-menu-mobile,
+.item-topbar-mobile {
+  margin-bottom: 0;
+}
