@@ -30,11 +30,11 @@ module.exports = {
     {
       resolve: `gatsby-source-airtable`,
       options: {
-        apiKey: `keyFFoReSEvMNy48l`,
+        apiKey: `keyTJm4V5i1tprmMb`,
         tables: [
           {
-            baseId: `apppw3zkUrQzfw53H`,
-            tableName: `Clients`
+            baseId: `appKeThV2yFTVBxZj`,
+            tableName: `Furniture`
           },
           // We can add other bases/tables here, too!
           //{
