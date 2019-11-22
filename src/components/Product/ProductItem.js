@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from "prop-types"
+import { Link } from "gatsby";
 import Image from "../Images";
 
 const ProductItem = ({ ...props }) => {
@@ -34,9 +35,7 @@ const ProductItem = ({ ...props }) => {
           </div>
         </div>
         <div className="block2-txt p-t-20">
-          <a href="product-detail.html" className="block2-name dis-block s-text3 p-b-5">
-            Herschel supply co 25l
-				</a>
+          <Link to='/products/1234' className='block2-name dis-block s-text3 p-b-5'>Herschel supply co 25l</Link>
           <span className="block2-price m-text6 p-r-5">
             $75.00
 				</span>

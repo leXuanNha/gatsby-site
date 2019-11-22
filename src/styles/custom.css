@@ -115,3 +115,25 @@
 .cart-btn-group > div {
   margin-left: 10px;
 }
+
+.bread-crumb {
+  background-color: #f5f5f5;
+  padding: 10px 20px;
+}
+
+.size-block .size-item {
+  display: inline-block;
+  border: 1px solid #e5e5e5;
+  width: 40px;
+  height: 40px;
+  line-height: 38px;
+  text-align: center;
+  margin-right: 10px;
+  color: #050505;
+  cursor: pointer;
+}
+
+.size-block .size-item.active {
+  color: #fff;
+  background-color: #000;
+}
