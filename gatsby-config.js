@@ -27,6 +27,23 @@ module.exports = {
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
+    {
+      resolve: `gatsby-source-airtable`,
+      options: {
+        apiKey: `keyFFoReSEvMNy48l`,
+        tables: [
+          {
+            baseId: `apppw3zkUrQzfw53H`,
+            tableName: `Clients`
+          },
+          // We can add other bases/tables here, too!
+          //{
+          //baseId: `AIRTABLE_BASE_ID`,
+          //tableName: `Sides`
+          //}
+        ]
+      }
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
