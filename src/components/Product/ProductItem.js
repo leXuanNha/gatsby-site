@@ -8,6 +8,7 @@ const numberWithCommas = (x) => {
 
 const ProductItem = ({ ...props }) => {
   const { data } = props;
+  console.log('data', data);
 
   let productLabelClass = '';
 

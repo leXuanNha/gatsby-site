@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 // import PropTypes from "prop-types"
+import { useStaticQuery, graphql } from "gatsby"
 import { Link } from "gatsby";
 import Image from "../Images";
 import Layout from '../layout';
@@ -12,11 +13,74 @@ const numberWithCommas = (x) => {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
+const getRandomWithOneExclusion = (lengthOfArray, arrayToExclude) => {
+
+  var rand = null;  //an integer
+
+  while (rand === null || arrayToExclude.includes(rand)) {
+    rand = Math.floor(Math.random() * lengthOfArray);
+  }
+
+  return rand;
+}
+
+const renderRelatedProducts = (relatedProducts, pathName) => {
+  const productList = [];
+
+  const productLength = relatedProducts.allAirtable.nodes.length;
+
+  const excludeIndex = [];
+
+  const currentProduct = relatedProducts.allAirtable.nodes.find(x => x.data.PathName === pathName);
+
+  excludeIndex.push(relatedProducts.allAirtable.nodes.indexOf(currentProduct));
+
+  for (let i = 0; i < 4; i++) {
+    const randomIndex = getRandomWithOneExclusion(productLength, excludeIndex);
+
+    excludeIndex.push(randomIndex);
+
+    productList.push(<ProductItem data={relatedProducts.allAirtable.nodes[randomIndex].data} />);
+  }
+
+  return <div className='container'>
+    <div className="sec-title p-b-60 m-t-60">
+      <h3 className="m-text5 t-center m-b-0">
+        SẢN PHẨM LIÊN QUAN
+    </h3>
+    </div>
+    <div className='row m-b-100'>
+      {productList}
+    </div>
+  </div>;
+}
+
 const ProductDetailPage = ({ pageContext: { data } }) => {
-  console.log('data', data);
   const [size, setSize] = useState('S');
 
   const [quantity, setQuantity] = useState(1);
+
+  const relatedProducts = useStaticQuery(graphql`
+    query relatedProductsQuery {
+      allAirtable(filter: {table: {eq: "Tshirt"}}) {
+        nodes {
+          data {
+            DisplayName
+            PathName
+            Label
+            Price
+            Image {
+              thumbnails {
+                full {
+                  url
+                }
+              }
+            }
+          }
+        }
+      }
+    }`
+  );
 
   return (
     <Layout>
@@ -175,20 +239,7 @@ const ProductDetailPage = ({ pageContext: { data } }) => {
         </div>
       </div>
 
-      {/* <div className='container'>
-        <div className="sec-title p-b-60 m-t-60">
-          <h3 className="m-text5 t-center m-b-0">
-            SẢN PHẨM CÙNG CHUYÊN MỤC
-				  </h3>
-        </div>
-        <div className='row m-b-100'>
-          <ProductItem />
-          <ProductItem />
-          <ProductItem />
-          <ProductItem />
-        </div>
-      </div> */}
-
+      {renderRelatedProducts(relatedProducts, data["PathName"])}
     </Layout>
   )
 }

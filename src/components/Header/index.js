@@ -21,7 +21,7 @@ class Header extends React.Component {
 
   toggleMobileMenu = () => {
     document.getElementsByClassName("btn-show-menu-mobile")[0].classList.toggle("is-active");
-    console.log('isActive', document.getElementsByClassName("btn-show-menu-mobile")[0].classList.contains("is-active"));
+
     if (document.getElementsByClassName("btn-show-menu-mobile")[0].classList.contains("is-active")) {
       document.getElementsByClassName("wrap-side-menu")[0].style.display = 'block';
     } else {

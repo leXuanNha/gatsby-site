@@ -74,7 +74,7 @@ exports.createPages = async ({ graphql, actions }) => {
     createPage({
       path: `/collection/${fieldValue.toLowerCase()}`,
       component: require.resolve(`./src/template/collection.js`),
-      context: { productList: edges },
+      context: { productList: edges, tag: fieldValue },
     })
   })
 }

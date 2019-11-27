@@ -4,12 +4,12 @@ import SEO from '../components/seo'
 import ProductList from '../components/Product/ProductList';
 import Tags from '../components/Tags';
 
-const CollectionPage = ({ pageContext: { productList } }) => {
+const CollectionPage = ({ pageContext: { productList, tag } }) => {
 
   return (
     <Layout>
       <SEO title="Products" />
-      <Tags />
+      <Tags selected={tag} />
       <ProductList title='All products' data={productList} />
     </Layout>
   )
