@@ -1,18 +1,21 @@
 import React from 'react'
 import PropTypes from "prop-types"
 import { Link } from "gatsby";
-import Image from "../Images";
+
+const numberWithCommas = (x) => {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
 
 const ProductItem = ({ ...props }) => {
-  const { label } = props;
+  const { data } = props;
 
   let productLabelClass = '';
 
-  if (label === 'new') {
+  if (data.Label === 'Mới') {
     productLabelClass = 'block2-labelnew';
   }
 
-  if (label === 'sale') {
+  if (data.Label === 'Sale') {
     productLabelClass = 'block2-labelsale';
   }
 
@@ -21,7 +24,7 @@ const ProductItem = ({ ...props }) => {
     <div className="col-sm-6 col-md-4 col-lg-3 p-b-50">
       <div className="block2">
         <div className={`block2-img wrap-pic-w of-hidden pos-relative ${productLabelClass}`}>
-          <Image imgName="imgTopCategory" />
+          <img src={data.Image[0].thumbnails.full.url} alt={data.DisplayName} />
           <div className="block2-overlay trans-0-4">
             <a href="#" className="block2-btn-addwishlist hov-pointer trans-0-4">
               <i className="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
@@ -29,16 +32,16 @@ const ProductItem = ({ ...props }) => {
             </a>
             <div className="block2-btn-addcart w-size1 trans-0-4">
               <button className="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-                Add to Cart
+                Thêm vào giỏ
 						</button>
             </div>
           </div>
         </div>
         <div className="block2-txt p-t-20">
-          <Link to='/products/1234' className='block2-name dis-block s-text3 p-b-5'>Herschel supply co 25l</Link>
-          <span className="block2-price m-text6 p-r-5">
-            $75.00
-				</span>
+          <Link to={`/products/${data.PathName}`} className='block2-name dis-block s-text3 p-b-5'>{data.DisplayName}</Link>
+          <span className="block2-price m-text6 p-r-5 price-text">
+            {numberWithCommas(data.Price)}
+          </span>
         </div>
       </div>
     </div>
@@ -46,7 +49,7 @@ const ProductItem = ({ ...props }) => {
 }
 
 ProductItem.propTypes = {
-  label: PropTypes.string
+  data: PropTypes.object
 }
 
 export default ProductItem;

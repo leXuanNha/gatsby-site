@@ -6,25 +6,75 @@
 
 // You can delete this file if you're not using it
 
-exports.createPages = ({ actions }) => {
+exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
 
-  const productData = [
-    {
-      id: '1234',
-      name: 'Ao 1234'
-    },
-    {
-      id: '5678',
-      name: 'Ao 5678'
-    },
-  ];
+  const resultTshirt = await graphql(`
+    query tshirtDetail {
+      allAirtable(filter: {table: {eq: "Tshirt"}}) {
+        nodes {
+          data {
+            PathName
+        DisplayName
+        Price
+        Label
+        In_stock
+        Collection
+        Description
+        Size
+        Image {
+          url
+        }
+          }
+        }
+      }
+    }
+  `);
 
-  productData.forEach(product => {
+  resultTshirt.data.allAirtable.nodes.forEach(product => {
+    const { data } = product;
     createPage({
-      path: `/products/${product.id}`,
+      path: `/products/${data["PathName"]}`,
       component: require.resolve(`./src/components/Product/ProductDetail.js`),
-      context: { product },
+      context: { data },
+    })
+  })
+
+  const resultTshirtCollection = await graphql(`
+  query tshirtGroupByCollection {
+    allAirtable(filter: {table: {eq: "Tshirt"}}) {
+      group(field: data___Collection) {
+        edges {
+          node {
+            id
+            data {
+              DisplayName
+              Collection
+              Image {
+                thumbnails {
+                  full {
+                    url
+                  }
+                }
+              }
+              PathName
+              Label
+              Price
+            }
+          }
+        }
+        fieldValue
+      }
+    }
+  }
+  `);
+
+  resultTshirtCollection.data.allAirtable.group.forEach(collection => {
+    const { edges, fieldValue } = collection;
+    createPage({
+      path: `/collection/${fieldValue.toLowerCase()}`,
+      component: require.resolve(`./src/template/collection.js`),
+      context: { productList: edges },
     })
   })
 }

@@ -46,7 +46,28 @@ const Image = ({ ...props }) => {
             ...GatsbyImageSharpFluid
           }
         }
-      }
+      },
+      imgTShirtIcon: file(relativePath: { eq: "icons/tshirt.png" }) {
+        childImageSharp {
+          fluid {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      },
+      imgQualityIcon: file(relativePath: { eq: "icons/quality.png" }) {
+        childImageSharp {
+          fluid {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      },
+      imgDonationIcon: file(relativePath: { eq: "icons/donation.png" }) {
+        childImageSharp {
+          fluid {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      },
     }
   `)
 

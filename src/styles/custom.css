@@ -93,7 +93,7 @@
 
 .tee-tag-item:hover {
   background: #293542;
-  color: #fff;
+  color: #fff !important;
   opacity: 0.7;
 }
 
@@ -170,4 +170,64 @@
 .item-menu-mobile,
 .item-topbar-mobile {
   margin-bottom: 0;
+}
+
+.price-text::after {
+  content: 'VND';
+  margin-left: 4px;
+}
+
+.product-specific-ic {
+  width: 44px;
+  padding: 8px 9px;
+  border: 1px solid #000;
+  opacity: 0.9;
+  border-radius: 50%;
+  display: inline-block;
+  vertical-align: top;
+}
+.product-specific-info {
+  display: inline-block;
+  width: calc(100% - 44px);
+  padding-left: 10px;
+  margin-top: -4px;
+}
+
+.size-table {
+  border-collapse: separate;
+  width: 100%;
+  table-layout: fixed;
+  border-spacing: 5px;
+  border: none;
+  font-size: 13px;
+}
+.size-table th {
+  padding: 0;
+}
+.size-table th {
+  background-color: #686868;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px;
+  text-align: center;
+}
+.size-table tr td {
+  background-color: #f5f8fa;
+  border: none;
+  text-align: center;
+  color: #506881;
+  padding: 10px;
+}
+.size-table tr td:first-child {
+  background-color: #686868;
+  color: #fff;
+  font-weight: bold;
+}
+
+.block2-img {
+  height: 300px;
+}
+
+.exchange-page {
+  padding-bottom: 30px;
 }

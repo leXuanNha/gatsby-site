@@ -34,7 +34,7 @@ module.exports = {
         tables: [
           {
             baseId: `appKeThV2yFTVBxZj`,
-            tableName: `Furniture`
+            tableName: `Tshirt`
           },
           // We can add other bases/tables here, too!
           //{

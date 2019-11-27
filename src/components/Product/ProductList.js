@@ -2,17 +2,16 @@ import React from 'react'
 import PropTypes from "prop-types"
 import ProductItem from './ProductItem';
 
-const renderProductList = (label) => {
+const renderProductList = (data) => {
   const productList = [];
-  for (let i = 0; i < 20; i++) {
-    productList.push(<ProductItem label={label} />);
-  }
 
-  return <React.Fragment>{productList}</React.Fragment>;
+  return data.map(item => {
+    return <ProductItem data={item.node.data} />
+  });
 }
 
 const ProductList = ({ ...props }) => {
-  const { title, label } = props;
+  const { title, data } = props;
   return (
     <div className="container">
       <div className="sec-title p-b-22">
@@ -22,7 +21,7 @@ const ProductList = ({ ...props }) => {
       </div>
 
       <div className="row">
-        {renderProductList(label)}
+        {renderProductList(data)}
       </div>
     </div>
   )

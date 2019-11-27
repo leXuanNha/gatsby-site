@@ -40,30 +40,19 @@ class Header extends React.Component {
           <nav className="menu">
             <ul className="main_menu">
               <li>
-                <Link to="/">Home</Link>
+                <Link to="/">Trang chủ</Link>
+              </li>
+              {/* <li>
+                <Link to="/about/">Giới thiệu</Link>
+              </li> */}
+              <li>
+                <Link to="/collection/all">Sản phẩm</Link>
               </li>
               <li>
-                <Link to="/products/">Shop</Link>
+                <Link to="/faqs/">FAQs</Link>
               </li>
-
-              <li className="sale-noti">
-                <a href="product.html">Sale</a>
-              </li>
-
               <li>
-                <a href="cart.html">Features</a>
-              </li>
-
-              <li>
-                <a href="blog.html">Blog</a>
-              </li>
-
-              <li>
-                <a href="about.html">About</a>
-              </li>
-
-              <li>
-                <Link to="/contact/">Contact</Link>
+                <Link to="/contact/">Liên hệ</Link>
               </li>
             </ul>
           </nav>
@@ -94,8 +83,7 @@ class Header extends React.Component {
         <div className="container-menu-header-v2 p-t-26">
           <div className="topbar2">
             <div className="topbar-social">
-              <a href="#" className="topbar-social-item fa fa-facebook"></a>
-              <a href="#" className="topbar-social-item fa fa-instagram"></a>
+              <a href="https://www.facebook.com/tektee.zone/" className="topbar-social-item fa fa-facebook" target="_blank"></a>
             </div>
 
             <a href="index.html" className="logo2">
@@ -120,30 +108,19 @@ class Header extends React.Component {
               <nav className="menu">
                 <ul className="main_menu">
                   <li>
-                    <Link to="/">Home</Link>
+                    <Link to="/">Trang chủ</Link>
+                  </li>
+                  {/* <li>
+                    <Link to="/about/">Giới thiệu</Link>
+                  </li> */}
+                  <li>
+                    <Link to="/collection/all/">Sản phẩm</Link>
                   </li>
                   <li>
-                    <Link to="/products/">Shop</Link>
+                    <Link to="/faqs/">FAQs</Link>
                   </li>
-
-                  <li className="sale-noti">
-                    <a href="product.html">Sale</a>
-                  </li>
-
                   <li>
-                    <a href="cart.html">Features</a>
-                  </li>
-
-                  <li>
-                    <a href="blog.html">Blog</a>
-                  </li>
-
-                  <li>
-                    <a href="about.html">About</a>
-                  </li>
-
-                  <li>
-                    <Link to="/contact/">Contact</Link>
+                    <Link to="/contact/">Liên hệ</Link>
                   </li>
                 </ul>
               </nav>
@@ -185,37 +162,24 @@ class Header extends React.Component {
 
               <li className="item-topbar-mobile p-l-10">
                 <div className="topbar-social-mobile">
-                  <a href="#" className="topbar-social-item fa fa-facebook"></a>
-                  <a href="#" className="topbar-social-item fa fa-instagram"></a>
+                  <a href="https://www.facebook.com/tektee.zone/" className="topbar-social-item fa fa-facebook" target="_blank"></a>
                 </div>
               </li>
 
               <li className="item-menu-mobile">
-                <Link to="/">Home</Link>
+                <Link to="/">Trang chủ</Link>
               </li>
-
+              {/* <li className="item-menu-mobile">
+                <Link to="/about/">Giới thiệu</Link>
+              </li> */}
               <li className="item-menu-mobile">
-                <Link to="/products/">Shop</Link>
+                <Link to="/collection/all/">Sản phẩm</Link>
               </li>
-
               <li className="item-menu-mobile">
-                <a href="product.html">Sale</a>
+                <Link to="/faqs/">FAQs</Link>
               </li>
-
               <li className="item-menu-mobile">
-                <a href="cart.html">Features</a>
-              </li>
-
-              <li className="item-menu-mobile">
-                <a href="blog.html">Blog</a>
-              </li>
-
-              <li className="item-menu-mobile">
-                <a href="about.html">About</a>
-              </li>
-
-              <li className="item-menu-mobile">
-                <Link to="/contact/">Contact</Link>
+                <Link to="/contact/">Liên hệ</Link>
               </li>
             </ul>
           </nav>
