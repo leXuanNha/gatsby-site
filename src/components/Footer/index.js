@@ -51,7 +51,7 @@ const Footer = () => (
           Đăng ký để nhận thông tin khuyến mãi và sản phẩm mới
 				</h4>
 
-        <form method="post" netlify-honeypot="bot-field" data-netlify="true">
+        <form name="subscribe" method="post" netlify-honeypot="bot-field" data-netlify="true">
           <input type="hidden" name="bot-field" />
 
           <div className="effect1 w-size9">
