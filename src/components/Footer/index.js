@@ -74,7 +74,7 @@ const Footer = () => (
 
         <form name="subscribe" method="post" netlify-honeypot="bot-field" data-netlify="true" onSubmit={handleSubmit}>
           <input type="hidden" name="bot-field" />
-
+          <input type="hidden" name="form-name" value="subscribe" />
           <div className="effect1 w-size9">
             <input className="s-text7 bg6 w-full p-b-5" type="email" name="email" placeholder="Email của bạn" />
             <span className="effect1-line"></span>
