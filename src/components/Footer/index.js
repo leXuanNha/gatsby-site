@@ -1,6 +1,26 @@
 import React from 'react';
 import { Link } from "gatsby";
 
+const encode = data => {
+  return Object.keys(data)
+    .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+    .join("&")
+}
+
+const handleSubmit = e => {
+  e.preventDefault()
+  const form = e.target;
+  fetch('/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: encode({
+      'form-name': form.getAttribute('name')
+    }),
+  })
+    .then(() => console.log('OK'))
+    .catch(error => alert(error));
+}
+
 const Footer = () => (
   <footer className="bg6 p-t-45 p-b-43 p-l-45 p-r-45">
     <div className="flex-w p-b-90">
@@ -51,7 +71,7 @@ const Footer = () => (
           Đăng ký để nhận thông tin khuyến mãi và sản phẩm mới
 				</h4>
 
-        <form name="subscribe" method="post" netlify-honeypot="bot-field" data-netlify="true">
+        <form name="subscribe" method="post" netlify-honeypot="bot-field" data-netlify="true" onSubmit={handleSubmit}>
           <input type="hidden" name="bot-field" />
 
           <div className="effect1 w-size9">
