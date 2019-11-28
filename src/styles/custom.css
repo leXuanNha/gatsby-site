@@ -270,3 +270,8 @@
   display: flex;
   justify-content: space-around;
 }
+
+.order-btn:disabled {
+  background-color: #e6e6e6;
+  cursor: auto;
+}

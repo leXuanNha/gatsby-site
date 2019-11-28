@@ -1,26 +1,26 @@
 import React from 'react';
 import { Link } from "gatsby";
 
-const encode = data => {
-  return Object.keys(data)
-    .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
-    .join("&")
-}
+// const encode = data => {
+//   return Object.keys(data)
+//     .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+//     .join("&")
+// }
 
-const handleSubmit = e => {
-  e.preventDefault()
-  const form = e.target;
-  fetch('/', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: encode({
-      'form-name': form.getAttribute('name'),
-      'email': 'nha.le@yopmail.com'
-    }),
-  })
-    .then(() => console.log('OK'))
-    .catch(error => alert(error));
-}
+// const handleSubmit = e => {
+//   e.preventDefault()
+//   const form = e.target;
+//   fetch('/', {
+//     method: 'POST',
+//     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+//     body: encode({
+//       'form-name': form.getAttribute('name'),
+//       'email': 'nha.le@yopmail.com'
+//     }),
+//   })
+//     .then(() => console.log('OK'))
+//     .catch(error => alert(error));
+// }
 
 const Footer = () => (
   <footer className="bg6 p-t-45 p-b-43 p-l-45 p-r-45">
@@ -72,9 +72,8 @@ const Footer = () => (
           Đăng ký để nhận thông tin khuyến mãi và sản phẩm mới
 				</h4>
 
-        <form name="subscribe" method="post" netlify-honeypot="bot-field" data-netlify="true" onSubmit={handleSubmit}>
-          <input type="hidden" name="bot-field" />
-          <input type="hidden" name="form-name" value="subscribe" />
+        <form name="subscribe-form" method="POST" data-netlify="true">
+          <input type="hidden" name="form-name" value="subscribe-form" />
           <div className="effect1 w-size9">
             <input className="s-text7 bg6 w-full p-b-5" type="email" name="email" placeholder="Email của bạn" />
             <span className="effect1-line"></span>
