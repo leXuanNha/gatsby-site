@@ -1,25 +1,36 @@
 import React from 'react';
 import { Link } from "gatsby";
+import Airtable from 'airtable';
 
 const handleSubmit = (e) => {
   e.preventDefault()
 
-  const form = e.target;
+  // const form = e.target;
 
-  const data = new FormData(form);
-  const xhr = new XMLHttpRequest();
-  xhr.open(form.method, 'https://formspree.io/mrgbegpl');
-  xhr.setRequestHeader("Accept", "application/json");
-  xhr.onreadystatechange = () => {
-    if (xhr.readyState !== XMLHttpRequest.DONE) return;
-    if (xhr.status === 200) {
-      form.reset();
-      console.log("OK");
-    } else {
-      console.log("ERROR");
+  // const data = new FormData(form);
+  // const xhr = new XMLHttpRequest();
+  // xhr.open(form.method, 'https://formspree.io/mrgbegpl');
+  // xhr.setRequestHeader("Accept", "application/json");
+  // xhr.onreadystatechange = () => {
+  //   if (xhr.readyState !== XMLHttpRequest.DONE) return;
+  //   if (xhr.status === 200) {
+  //     form.reset();
+  //     console.log("OK");
+  //   } else {
+  //     console.log("ERROR");
+  //   }
+  // };
+  // xhr.send(data);
+
+  const base = new Airtable({ apiKey: 'keyTJm4V5i1tprmMb' }).base('appKeThV2yFTVBxZj');
+
+  base('Subscribers').create([
+    {
+      "fields": {
+        "Email": "nha.le2@yopmail.com"
+      }
     }
-  };
-  xhr.send(data);
+  ]);
 }
 
 const Footer = () => {
