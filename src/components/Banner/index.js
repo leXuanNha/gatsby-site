@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import { Link } from "gatsby";
 
 const Banner = () => (
   <div className="banner">
@@ -11,12 +12,11 @@ const Banner = () => (
     </span>
 
     <div className="button-slide1 wrap-btn-slide1 w-size1">
-      <a
-        href="product.html"
+      <Link to="/collection/all"
         className="flex-c-m size2 bo-rad-23 s-text2 bgwhite hov1 trans-0-4"
       >
         Shop Now
-      </a>
+      </Link>
     </div>
   </div>
 )

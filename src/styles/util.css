@@ -7718,6 +7718,41 @@ TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
   text-decoration: underline;
 }
 
+.s-text23 {
+  font-family: Montserrat-Regular;
+  font-size: 15px;
+  color: #000;
+  line-height: 1.8;
+}
+
+.s-text24 {
+  font-family: Montserrat-Regular;
+  font-size: 14px;
+  color: #555555;
+  line-height: 1.8;
+}
+
+.s-text25 {
+  font-family: Montserrat-Regular;
+  font-size: 15px;
+  color: #666666;
+  line-height: 1.8;
+}
+
+.s-text26 {
+  font-family: Montserrat-Regular;
+  font-size: 15px;
+  color: #555555;
+  line-height: 1.8;
+}
+
+.s-text27 {
+  font-family: Montserrat-Regular;
+  font-size: 15px;
+  color: #888888;
+  line-height: 1.8;
+}
+
 /*[ M-Text 16 - 30 ]
 ///////////////////////////////////////////////////////////
 */
@@ -8546,7 +8581,7 @@ EFFECT   EFFECT   EFFECT   EFFECT   EFFECT   EFFECT  EFFECT
 */
 .hov1:hover {
   background-color: #e65540;
-  color: white;
+  color: white !important;
 }
 
 .hov2:hover {
@@ -8595,6 +8630,10 @@ EFFECT   EFFECT   EFFECT   EFFECT   EFFECT   EFFECT  EFFECT
 
 .overlay0 {
   background-color: rgba(0, 0, 0, 0.2);
+}
+
+.w-s-pr {
+  white-space: pre-wrap;
 }
 
 /*=========================================================

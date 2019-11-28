@@ -7,7 +7,7 @@ import Cart from '../components/Cart';
 
 const CartPage = () => (
   <Layout>
-    <SEO title="Cart" />
+    <SEO title="Giỏ hàng" />
     <Cart />
   </Layout>
 )

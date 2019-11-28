@@ -1,6 +1,7 @@
-import React from "react"
-// import PropTypes from "prop-types"
-import { Link } from 'gatsby'
+import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { Link } from 'gatsby';
 import Image from "../Images";
 
 class Header extends React.Component {
@@ -21,7 +22,7 @@ class Header extends React.Component {
 
   toggleMobileMenu = () => {
     document.getElementsByClassName("btn-show-menu-mobile")[0].classList.toggle("is-active");
-    console.log('isActive', document.getElementsByClassName("btn-show-menu-mobile")[0].classList.contains("is-active"));
+
     if (document.getElementsByClassName("btn-show-menu-mobile")[0].classList.contains("is-active")) {
       document.getElementsByClassName("wrap-side-menu")[0].style.display = 'block';
     } else {
@@ -30,40 +31,31 @@ class Header extends React.Component {
   }
 
   render() {
+    const { storageProducts } = this.props;
+
     return (<React.Fragment>
       <div className="wrap_header fixed-header2 trans-0-4">
-        <a href="index.html" className="logo">
+        <Link to="/" className="logo">
           <Image imgName='imgLogo' />
-        </a>
+        </Link>
 
         <div className="wrap_menu">
           <nav className="menu">
             <ul className="main_menu">
               <li>
-                <Link to="/">Home</Link>
+                <Link to="/">Trang chủ</Link>
+              </li>
+              {/* <li>
+                <Link to="/about/">Giới thiệu</Link>
+              </li> */}
+              <li>
+                <Link to="/collection/all">Sản phẩm</Link>
               </li>
               <li>
-                <Link to="/products/">Shop</Link>
+                <Link to="/faqs/">FAQs</Link>
               </li>
-
-              <li className="sale-noti">
-                <a href="product.html">Sale</a>
-              </li>
-
               <li>
-                <a href="cart.html">Features</a>
-              </li>
-
-              <li>
-                <a href="blog.html">Blog</a>
-              </li>
-
-              <li>
-                <a href="about.html">About</a>
-              </li>
-
-              <li>
-                <Link to="/contact/">Contact</Link>
+                <Link to="/contact/">Liên hệ</Link>
               </li>
             </ul>
           </nav>
@@ -73,7 +65,7 @@ class Header extends React.Component {
           <div className="header-wrapicon2">
             <Link to="/cart/">
               <Image imgName='imgCartHeader' className='img-cart-header' />
-              <span className="header-icons-noti">0</span>
+              <span className="header-icons-noti">{storageProducts.length}</span>
             </Link>
           </div>
         </div>
@@ -94,21 +86,18 @@ class Header extends React.Component {
         <div className="container-menu-header-v2 p-t-26">
           <div className="topbar2">
             <div className="topbar-social">
-              <a href="#" className="topbar-social-item fa fa-facebook"></a>
-              <a href="#" className="topbar-social-item fa fa-instagram"></a>
+              <a href="https://www.facebook.com/tektee.zone/" className="topbar-social-item fa fa-facebook" target="_blank"></a>
             </div>
 
-            <a href="index.html" className="logo2">
-              {/* <img src="../../images/icons/logo.png" alt="IMG-LOGO" /> */}
+            <Link to="/" className="logo2">
               <Image imgName='imgLogo' />
-            </a>
+            </Link>
 
             <div className="topbar-child2">
               <div className="header-wrapicon2 m-r-13">
                 <Link to="/cart/">
                   <Image imgName='imgCartHeader' className='img-cart-header' />
-                  {/* <img src="images/icons/icon-header-02.png" className="header-icon1 js-show-header-dropdown" alt="ICON" /> */}
-                  <span className="header-icons-noti">0</span>
+                  <span className="header-icons-noti">{storageProducts.length}</span>
                 </Link>
               </div>
             </div>
@@ -120,30 +109,19 @@ class Header extends React.Component {
               <nav className="menu">
                 <ul className="main_menu">
                   <li>
-                    <Link to="/">Home</Link>
+                    <Link to="/">Trang chủ</Link>
+                  </li>
+                  {/* <li>
+                    <Link to="/about/">Giới thiệu</Link>
+                  </li> */}
+                  <li>
+                    <Link to="/collection/all/">Sản phẩm</Link>
                   </li>
                   <li>
-                    <Link to="/products/">Shop</Link>
+                    <Link to="/faqs/">FAQs</Link>
                   </li>
-
-                  <li className="sale-noti">
-                    <a href="product.html">Sale</a>
-                  </li>
-
                   <li>
-                    <a href="cart.html">Features</a>
-                  </li>
-
-                  <li>
-                    <a href="blog.html">Blog</a>
-                  </li>
-
-                  <li>
-                    <a href="about.html">About</a>
-                  </li>
-
-                  <li>
-                    <Link to="/contact/">Contact</Link>
+                    <Link to="/contact/">Liên hệ</Link>
                   </li>
                 </ul>
               </nav>
@@ -152,16 +130,16 @@ class Header extends React.Component {
         </div>
 
         <div className="wrap_header_mobile">
-          <a href="index.html" className="logo-mobile">
+          <Link to="/" className="logo-mobile">
             <Image imgName='imgLogo' />
-          </a>
+          </Link>
 
           <div className="btn-show-menu">
             <div className="header-icons-mobile">
               <div className="header-wrapicon2">
                 <Link to="/cart/">
                   <Image imgName='imgCartHeader' className='img-cart-header' />
-                  <span className="header-icons-noti">0</span>
+                  <span className="header-icons-noti">{storageProducts.length}</span>
                 </Link>
               </div>
             </div>
@@ -179,43 +157,30 @@ class Header extends React.Component {
             <ul className="main-menu">
               <li className="item-topbar-mobile p-l-20 p-t-8 p-b-8">
                 <span className="topbar-child1">
-                  Free shipping for standard order over $100
+                  Free ship khi mua từ 2 áo trở lên
 						    </span>
               </li>
 
               <li className="item-topbar-mobile p-l-10">
                 <div className="topbar-social-mobile">
-                  <a href="#" className="topbar-social-item fa fa-facebook"></a>
-                  <a href="#" className="topbar-social-item fa fa-instagram"></a>
+                  <a href="https://www.facebook.com/tektee.zone/" className="topbar-social-item fa fa-facebook" target="_blank"></a>
                 </div>
               </li>
 
               <li className="item-menu-mobile">
-                <Link to="/">Home</Link>
+                <Link to="/">Trang chủ</Link>
               </li>
-
+              {/* <li className="item-menu-mobile">
+                <Link to="/about/">Giới thiệu</Link>
+              </li> */}
               <li className="item-menu-mobile">
-                <Link to="/products/">Shop</Link>
+                <Link to="/collection/all/">Sản phẩm</Link>
               </li>
-
               <li className="item-menu-mobile">
-                <a href="product.html">Sale</a>
+                <Link to="/faqs/">FAQs</Link>
               </li>
-
               <li className="item-menu-mobile">
-                <a href="cart.html">Features</a>
-              </li>
-
-              <li className="item-menu-mobile">
-                <a href="blog.html">Blog</a>
-              </li>
-
-              <li className="item-menu-mobile">
-                <a href="about.html">About</a>
-              </li>
-
-              <li className="item-menu-mobile">
-                <Link to="/contact/">Contact</Link>
+                <Link to="/contact/">Liên hệ</Link>
               </li>
             </ul>
           </nav>
@@ -227,11 +192,11 @@ class Header extends React.Component {
 }
 
 Header.propTypes = {
-
+  storageProducts: PropTypes.array
 }
 
-Header.defaultProps = {
+const mapStateToProps = state => ({
+  storageProducts: state.cartReducer.products
+});
 
-}
-
-export default Header
+export default connect(mapStateToProps, null)(Header);

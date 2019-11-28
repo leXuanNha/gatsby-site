@@ -2165,7 +2165,7 @@ li.sale-noti > a {
   width: 100%;
 }
 
-.cart-img-product::after {
+/* .cart-img-product::after {
   content: '\e870';
   font-family: Linearicons;
   font-size: 16px;
@@ -2188,11 +2188,10 @@ li.sale-noti > a {
   -o-transition: all 0.3s;
   -moz-transition: all 0.3s;
   opacity: 0;
-}
+} */
 
-.cart-img-product:hover:after {
+.cart-img-product:hover {
   cursor: pointer;
-  opacity: 1;
 }
 
 /*[ Tags ]

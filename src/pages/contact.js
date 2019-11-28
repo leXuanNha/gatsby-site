@@ -7,7 +7,7 @@ import Contact from '../components/Contact';
 
 const ContactPage = () => (
   <Layout>
-    <SEO title="Contact" />
+    <SEO title="Liên hệ" />
     <Contact />
   </Layout>
 )

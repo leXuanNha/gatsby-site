@@ -1,34 +1,42 @@
 import React from 'react'
 import PropTypes from "prop-types"
+import { Link } from "gatsby";
+import { useStaticQuery, graphql } from "gatsby"
 
-const renderTags = data => {
+const renderTags = (data, selected) => {
   return data.map((item, index) => {
     let tagItemClass = 'tee-tag-item';
 
-    if (item.selected) {
+    if (selected.toLowerCase() === item.toLowerCase()) {
       tagItemClass += ' tag-selected';
     }
 
     return (
-      <div className={tagItemClass} key={index}>
-        {item.name}
-      </div>
+      <Link to={`/collection/${item.toLowerCase()}`} className={tagItemClass} key={index}>
+        {item}
+      </Link>
     );
   });
 }
 
 const Tags = ({ ...props }) => {
-  const { data } = props;
+  const data = useStaticQuery(graphql`
+    query MyQuery {
+      allAirtable(filter: {table: {eq: "Tshirt"}}) {
+        distinct(field: data___Collection)
+      }
+    }`
+  );
+
   return (
     <div className='tag-list-wrapper'>
-      {renderTags(data)}
+      {renderTags(data.allAirtable.distinct, props.selected)}
     </div>
   )
 }
 
 Tags.propTypes = {
-  data: PropTypes.array.isRequired
+  selected: PropTypes.string
 }
-
 
 export default Tags;

@@ -11,9 +11,9 @@ const IndexPage = () => (
   <Layout>
     <Banner />
     <TopCategory />
-    <OurProduct title='New arrivals' label='new' />
-    <OurProduct title='Best seller' />
-    <SEO title="Home" />
+    <OurProduct title='Hàng mới về' label='Mới' />
+    {/* <OurProduct title='Bán chạy' label="Bán chạy" /> */}
+    <SEO title="Trang chủ" />
 
     {/* <Link to="/page-2/">Go to page 2</Link> */}
   </Layout>
