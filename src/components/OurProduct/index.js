@@ -14,7 +14,7 @@ const renderProductList = (data) => {
 }
 
 const OurProduct = ({ ...props }) => {
-  const { title, label } = props;
+  const { title } = props;
 
   const data = useStaticQuery(graphql`
     query outProductQuery {

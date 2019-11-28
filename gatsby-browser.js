@@ -10,3 +10,7 @@ import "./src/styles/util.css"
 import "./src/styles/custom.css"
 import "./src/styles/hamburgers.css"
 import "./src/styles/hamburgers.min.css"
+
+import ReduxWrapper from "./redux-provider-wrapper";
+// const ReduxWrapper = require('./redux-provider-wrapper').default;
+export const wrapRootElement = ReduxWrapper;

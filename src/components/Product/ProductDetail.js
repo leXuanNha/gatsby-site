@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
-// import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
+import React, { useState } from 'react';
+// import PropTypes from "prop-types";
+import { useDispatch } from 'react-redux';
+import { useStaticQuery, graphql } from "gatsby";
 import { Link } from "gatsby";
 import Image from "../Images";
 import Layout from '../layout';
 import SEO from '../seo';
 import ProductItem from './ProductItem';
+import { addToCartMessage } from '../../store/actions';
 
 const SIZE_OPTIONS = ['S', 'M', 'L', 'XL'];
 
@@ -55,10 +57,12 @@ const renderRelatedProducts = (relatedProducts, pathName) => {
   </div>;
 }
 
-const ProductDetailPage = ({ pageContext: { data } }) => {
+const ProductDetailPage = ({ pageContext: { data }, props }) => {
   const [size, setSize] = useState('S');
 
   const [quantity, setQuantity] = useState(1);
+
+  const dispatch = useDispatch();
 
   const relatedProducts = useStaticQuery(graphql`
     query relatedProductsQuery {
@@ -164,7 +168,7 @@ const ProductDetailPage = ({ pageContext: { data } }) => {
             </div>
 
             <div className="btn-addcart-product-detail size16 trans-0-4 m-t-5 m-b-5">
-              <button className="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
+              <button className="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4" onClick={() => dispatch(addToCartMessage(data))}>
                 Thêm vào giỏ hàng
 						  </button>
             </div>
@@ -244,8 +248,12 @@ const ProductDetailPage = ({ pageContext: { data } }) => {
   )
 }
 
-// ProductDetail.propTypes = {
-
+// ProductDetailPage.propTypes = {
+//   addToCart: PropTypes.func
 // }
+
+// const mapDispatchToProps = {
+//   addToCart: product => addToCartMessage(product, 1)
+// };
 
 export default ProductDetailPage;

@@ -5,3 +5,6 @@
  */
 
 // You can delete this file if you're not using it
+import ReduxWrapper from "./redux-provider-wrapper";
+// const ReduxWrapper = require('./redux-provider-wrapper').default;
+export const wrapRootElement = ReduxWrapper;

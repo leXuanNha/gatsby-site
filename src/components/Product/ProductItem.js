@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from "prop-types"
+import { useDispatch } from "react-redux";
 import { Link } from "gatsby";
+import { addToCartMessage } from '../../store/actions';
 
 const numberWithCommas = (x) => {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -8,7 +10,6 @@ const numberWithCommas = (x) => {
 
 const ProductItem = ({ ...props }) => {
   const { data } = props;
-  console.log('data', data);
 
   let productLabelClass = '';
 
@@ -20,6 +21,7 @@ const ProductItem = ({ ...props }) => {
     productLabelClass = 'block2-labelsale';
   }
 
+  const dispatch = useDispatch();
 
   return (
     <div className="col-sm-6 col-md-4 col-lg-3 p-b-50">
@@ -27,12 +29,8 @@ const ProductItem = ({ ...props }) => {
         <div className={`block2-img wrap-pic-w of-hidden pos-relative ${productLabelClass}`}>
           <img src={data.Image[0].thumbnails.full.url} alt={data.DisplayName} />
           <div className="block2-overlay trans-0-4">
-            <a href="#" className="block2-btn-addwishlist hov-pointer trans-0-4">
-              <i className="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-              <i className="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-            </a>
             <div className="block2-btn-addcart w-size1 trans-0-4">
-              <button className="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
+              <button className="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4" onClick={() => dispatch(addToCartMessage(data))}>
                 Thêm vào giỏ
 						</button>
             </div>

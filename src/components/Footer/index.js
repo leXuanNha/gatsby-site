@@ -51,19 +51,21 @@ const Footer = () => (
           Đăng ký để nhận thông tin khuyến mãi và sản phẩm mới
 				</h4>
 
-        <form>
+        <form method="post" netlify-honeypot="bot-field" data-netlify="true">
+          <input type="hidden" name="bot-field" />
+
           <div className="effect1 w-size9">
-            <input className="s-text7 bg6 w-full p-b-5" type="text" name="email" placeholder="Email của bạn" />
+            <input className="s-text7 bg6 w-full p-b-5" type="email" name="email" placeholder="Email của bạn" />
             <span className="effect1-line"></span>
           </div>
 
           <div className="w-size2 p-t-20">
-            <button className="flex-c-m size2 bg4 bo-rad-23 hov1 m-text3 trans-0-4">
+            <button type="submit" className="flex-c-m size2 bg4 bo-rad-23 hov1 m-text3 trans-0-4">
               Đăng ký
 						</button>
           </div>
-
         </form>
+
       </div>
     </div>
 

@@ -1,9 +1,22 @@
 import React from 'react'
 // import PropTypes from "prop-types"
+import { Link } from "gatsby";
 
 const Contact = () => {
   return (
-    <section className="bgwhite p-t-66 p-b-60">
+    <section className="bgwhite p-b-60">
+      <div className="bread-crumb flex-w m-b-45">
+        <div className='container'>
+          <Link to='/' className="s-text16">
+            Trang chủ
+            <i className="fa fa-angle-right m-l-8 m-r-9" aria-hidden="true"></i>
+          </Link>
+          <span className="s-text17">
+            Liên hệ
+          </span>
+        </div>
+      </div>
+
       <div className="container">
         <div className="row">
           <div className="col-md-6 p-b-30">

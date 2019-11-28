@@ -3,10 +3,8 @@ import PropTypes from "prop-types"
 import ProductItem from './ProductItem';
 
 const renderProductList = (data) => {
-  const productList = [];
-
-  return data.map(item => {
-    return <ProductItem data={item.node.data} />
+  return data.map((item, index) => {
+    return <ProductItem data={item.node.data} key={index} />
   });
 }
 
