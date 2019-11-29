@@ -13,9 +13,9 @@ const ProductList = ({ ...props }) => {
   return (
     <div className="container">
       <div className="sec-title p-b-22">
-        <h3 className="m-text20 m-left" style={{ marginBottom: 0 }}>
+        <h1 className="m-text20 m-left" style={{ marginBottom: 0 }}>
           {title}
-        </h3>
+        </h1>
       </div>
 
       <div className="row">

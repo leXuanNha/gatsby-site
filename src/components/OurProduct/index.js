@@ -42,9 +42,9 @@ const OurProduct = ({ ...props }) => {
     <section className="bgwhite p-t-45 p-b-58">
       <div className="container">
         <div className="sec-title p-b-22">
-          <h3 className="m-text5 t-center">
+          <h1 className="m-text5 t-center">
             {title}
-          </h3>
+          </h1>
         </div>
 
         <div className="row">

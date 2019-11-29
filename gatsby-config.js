@@ -1,8 +1,11 @@
 module.exports = {
   siteMetadata: {
     title: `TekTee Zone - Áo thun cho developer`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    description: `Những chiếc áo xịn xò và đầy ắp thông điệp của dev, mang lại cảm giác vui vẻ cả ngày và hào hứng cho mọi người biết bạn là một developer chân chính.`,
+    author: `@TekTeeZone`,
+    keywords: `ao thun, áo thun, developer, it, tektee, zone, tshirt, t-shirt, shopping, software, technology, web, mobile, programmer, programming, ios, android, aothun, lập trình, lập trình viên, dev`,
+    siteUrl: "https://tekteezone.com",
+    image: "/images/metaImage.png"
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

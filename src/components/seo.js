@@ -19,6 +19,9 @@ function SEO({ description, lang, meta, title }) {
             title
             description
             author
+            keywords
+            siteUrl
+            image
           }
         }
       }
@@ -26,6 +29,8 @@ function SEO({ description, lang, meta, title }) {
   )
 
   const metaDescription = description || site.siteMetadata.description
+
+  const image = `${site.siteMetadata.siteUrl}${site.siteMetadata.image}`
 
   return (
     <Helmet
@@ -38,6 +43,10 @@ function SEO({ description, lang, meta, title }) {
         {
           name: `description`,
           content: metaDescription,
+        },
+        {
+          name: "keywords",
+          content: site.siteMetadata.keywords
         },
         {
           property: `og:title`,
@@ -67,7 +76,17 @@ function SEO({ description, lang, meta, title }) {
           name: `twitter:description`,
           content: metaDescription,
         },
-      ].concat(meta)}
+      ].concat([
+        {
+          property: "og:image",
+          content: image
+        },
+        {
+          name: "twitter:card",
+          content: "summary_large_image"
+        }
+      ]
+      ).concat(meta)}
     />
   )
 }
