@@ -68,6 +68,20 @@ const Image = ({ ...props }) => {
           }
         }
       },
+      imgSubscribeSuccessIcon: file(relativePath: { eq: "icons/subscribe.png" }) {
+        childImageSharp {
+          fluid {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      },
+      imgOrderSuccessIcon: file(relativePath: { eq: "icons/order-success.png" }) {
+        childImageSharp {
+          fluid {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
     }
   `)
 

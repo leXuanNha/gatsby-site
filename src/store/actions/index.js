@@ -1,9 +1,10 @@
 const ADD_TO_CART = 'ADD_TO_CART';
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 const UPDATE_QUANTITY_TO_CART = 'UPDATE_QUANTITY_TO_CART';
+const CLEAR_CART = 'CLEAR_CART';
 
-export function addToCartMessage(product, size) {
-  return buildMessage(ADD_TO_CART, { product, size });
+export function addToCartMessage(product, size, count) {
+  return buildMessage(ADD_TO_CART, { product, size, count });
 }
 
 export function removeFromCartMessage(productId) {
@@ -14,6 +15,10 @@ export function updateQuantityToCartMessage(productId, size, count) {
   return buildMessage(UPDATE_QUANTITY_TO_CART, { productId, size, count });
 }
 
+export function clearCartMessage() {
+  return buildMessage(CLEAR_CART, {});
+}
+
 function buildMessage(type, payload) {
   return { type, payload };
 }
@@ -21,7 +26,8 @@ function buildMessage(type, payload) {
 const messageHandlers = {
   [ADD_TO_CART]: addToCart,
   [REMOVE_FROM_CART]: removeFromCart,
-  [UPDATE_QUANTITY_TO_CART]: updateQuantityToCart
+  [UPDATE_QUANTITY_TO_CART]: updateQuantityToCart,
+  [CLEAR_CART]: clearCart
 };
 
 function handleMessage(state, { type, payload }) {
@@ -32,13 +38,13 @@ function handleMessage(state, { type, payload }) {
   return handler(state, payload);
 }
 
-function addToCart(state, { product, size }) {
+function addToCart(state, { product, size, count }) {
   const products = [
     ...state.products
   ];
 
   if (!products.find(x => x.product === product.PathName && x.size === size)) {
-    products.push({ product: product.PathName, count: 1, size });
+    products.push({ product: product.PathName, count, size });
   }
 
   return {
@@ -59,6 +65,7 @@ function removeFromCart(state, { productId }) {
   };
 }
 
+
 function updateQuantityToCart(state, { productId, size, count }) {
   console.log('size', size);
   const products = [
@@ -74,6 +81,13 @@ function updateQuantityToCart(state, { productId, size, count }) {
   return {
     ...state,
     products
+  };
+}
+
+function clearCart(state, { }) {
+  return {
+    ...state,
+    products: []
   };
 }
 

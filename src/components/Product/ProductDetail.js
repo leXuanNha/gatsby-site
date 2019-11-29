@@ -189,7 +189,7 @@ const ProductDetailPage = ({ pageContext: { data } }) => {
               <button
                 className="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4"
                 onClick={() => {
-                  dispatch(addToCartMessage(data, size));
+                  dispatch(addToCartMessage(data, size, quantity));
                   setTimeout(() => {
                     navigate("/cart/")
                   }, 200);

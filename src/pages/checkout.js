@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import { Link, navigate } from 'gatsby'
 import { useStaticQuery, graphql } from 'gatsby'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import Select from 'react-select'
+import Airtable from 'airtable'
+import { clearCartMessage } from "../store/actions";
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 import tinhThanhJson from '../dist/tinh_tp.json'
@@ -66,7 +68,40 @@ const processTotalBill = cartProducts => {
   return totalCash
 }
 
+const handleSubmitOrder = (e, params, dispatch) => {
+  e.preventDefault();
+
+  const base = new Airtable({ apiKey: 'keyTJm4V5i1tprmMb' }).base('appKeThV2yFTVBxZj');
+
+  const fieldsInput = [];
+
+  params.cartProducts.map(item => {
+    fieldsInput.push({
+      "fields": {
+        "Client name": params.fullName,
+        "Client email": params.email,
+        "Client phone": params.phoneNumber,
+        "Client address": `${params.address}, ${params.quanHuyen}, ${params.tinhThanh}`,
+        "Product": item.PathName,
+        "Size": item.size,
+        "Quantity": item.count,
+        "Status": "Waiting for confirmed",
+        "Unit Price": item.Price,
+      }
+    })
+  })
+
+  setTimeout(() => {
+    navigate("/checkout-success");
+    dispatch(clearCartMessage())
+  }, 200);
+
+  base('Orders').create(fieldsInput);
+}
+
 const FAQPage = () => {
+  const dispatch = useDispatch();
+
   const storageProducts = useSelector(state => state.cartReducer.products)
 
   const tinhThanhOptions = processTinhThanhData()
@@ -105,16 +140,6 @@ const FAQPage = () => {
       });
     }
   })
-
-  // data.allAirtable.nodes.map(node => {
-  //   if (storageProducts.find(x => x.product === node.data.PathName)) {
-  //     cartProducts.push({
-  //       ...node.data,
-  //       count: storageProducts.find(x => x.product === node.data.PathName)
-  //         .count,
-  //     })
-  //   }
-  // })
 
   const [tinhThanh, setTinhThanh] = useState(null)
 
@@ -247,6 +272,7 @@ const FAQPage = () => {
                 style={{ width: 300, float: 'right' }}
               >
                 <button
+                  type="submit"
                   className="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4 order-btn"
                   disabled={
                     !fullName ||
@@ -256,11 +282,18 @@ const FAQPage = () => {
                     !tinhThanh ||
                     !quanHuyen
                   }
-                  onClick={() => {
-                    console.log('fullName', fullName)
-                    console.log('email', email)
-                    console.log('address', address)
-                    console.log('phoneNumber', phoneNumber)
+                  onClick={(e) => {
+                    const params = {
+                      fullName,
+                      email,
+                      phoneNumber,
+                      address,
+                      tinhThanh: tinhThanh.name,
+                      quanHuyen: quanHuyen.name_with_type,
+                      cartProducts
+                    };
+
+                    handleSubmitOrder(e, params, dispatch);
                   }}
                 >
                   Đặt hàng
@@ -293,13 +326,13 @@ const FAQPage = () => {
                 )
               })}
               <div className="checkout-bill p-t-10">
-                <p className="s-text6 price-text">Tạm tính</p>
+                <p className="s-text6">Tạm tính</p>
                 <p className="s-text6 price-text">
                   {numberWithCommas(processTotalBill(cartProducts))}
                 </p>
               </div>
               <div className="checkout-bill">
-                <p className="s-text6 price-text">Phí ship</p>
+                <p className="s-text6">Phí ship</p>
                 {cartProducts.length >= 2 || cartProducts[0].count >= 2 ? (
                   <p className="s-text6 price-text">{numberWithCommas(0)}</p>
                 ) : !quanHuyen ? (
@@ -311,7 +344,7 @@ const FAQPage = () => {
                     )}
               </div>
               <div className="checkout-bill">
-                <p className="s-text18 price-text">Tổng cộng</p>
+                <p className="s-text18">Tổng cộng</p>
                 {!quanHuyen ||
                   cartProducts.length >= 2 ||
                   cartProducts[0].count >= 2 ? (

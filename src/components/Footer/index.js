@@ -1,33 +1,28 @@
 import React from 'react';
-import { Link } from "gatsby";
+import { Link, navigate } from "gatsby";
 import Airtable from 'airtable';
 
 const handleSubmit = (e) => {
   e.preventDefault()
 
-  // const form = e.target;
+  const form = e.target;
 
-  // const data = new FormData(form);
-  // const xhr = new XMLHttpRequest();
-  // xhr.open(form.method, 'https://formspree.io/mrgbegpl');
-  // xhr.setRequestHeader("Accept", "application/json");
-  // xhr.onreadystatechange = () => {
-  //   if (xhr.readyState !== XMLHttpRequest.DONE) return;
-  //   if (xhr.status === 200) {
-  //     form.reset();
-  //     console.log("OK");
-  //   } else {
-  //     console.log("ERROR");
-  //   }
-  // };
-  // xhr.send(data);
+  const formData = new FormData(form);
+
+  const objectFormData = {};
+
+  formData.forEach((value, key) => { objectFormData[key] = value });
 
   const base = new Airtable({ apiKey: 'keyTJm4V5i1tprmMb' }).base('appKeThV2yFTVBxZj');
+
+  form.reset();
+
+  navigate("/thank-subscribe");
 
   base('Subscribers').create([
     {
       "fields": {
-        "Email": "nha.le2@yopmail.com"
+        "Email": objectFormData.email
       }
     }
   ]);
@@ -43,13 +38,13 @@ const Footer = () => {
 				</h4>
 
           <div>
-            <p className="s-text24 w-size27">
+            <p className="s-text24 w-size27 m-b-5">
               Địa chỉ: 21A đường số 2, P.Hiệp Bình Phước, Q.Thủ Đức, TP.Hồ Chí Minh<br />
               Số điện thoại: 0966 928 690
 					</p>
 
-            <div className="flex-m p-t-30">
-              <a href="https://www.facebook.com/tektee.zone/" className="fs-18 color1 p-r-20 fa fa-facebook-official" target="_blank"></a>
+            <div className="flex-m p-t-0">
+              <a href="https://www.facebook.com/tektee.zone/" className="color1 p-r-20 fa fa-facebook-official" target="_blank" style={{ fontSize: 25 }}></a>
             </div>
           </div>
         </div>
@@ -85,7 +80,6 @@ const Footer = () => {
 				</h4>
 
           <form name="subscribe-form" method="POST" onSubmit={handleSubmit}>
-            <input type="hidden" name="form-name" value="subscribe-form" />
             <div className="effect1 w-size9">
               <input className="s-text24 bg6 w-full p-b-5" type="email" name="email" placeholder="Email của bạn" />
               <span className="effect1-line"></span>

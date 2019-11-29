@@ -325,6 +325,10 @@
   height: 20px;
 }
 
+.topbar-social-item {
+  font-size: 25px !important;
+}
+
 @media (max-width: 576px) {
   .product-item-wrapper {
     max-width: 50%;
@@ -344,6 +348,16 @@
   }
   .order-btn-div {
     width: 100% !important;
+  }
+
+  .checkout-item {
+    display: flex;
+  }
+  .checkout-item .item-name {
+    margin: 0 15px;
+  }
+  .checkout-item .item-count {
+    margin-right: 15px;
   }
 }
 
