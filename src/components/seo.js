@@ -86,6 +86,14 @@ function SEO({ description, lang, meta, title }) {
           content: image
         },
         {
+          property: "og:image:width",
+          content: 1500
+        },
+        {
+          property: "og:image:height",
+          content: 600
+        },
+        {
           name: "twitter:card",
           content: "summary_large_image"
         }
@@ -96,7 +104,7 @@ function SEO({ description, lang, meta, title }) {
 }
 
 SEO.defaultProps = {
-  lang: `en`,
+  lang: `vn`,
   meta: [],
   description: ``,
 }
