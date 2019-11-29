@@ -87,11 +87,11 @@ function SEO({ description, lang, meta, title }) {
         },
         {
           property: "og:image:width",
-          content: 1500
+          content: image.width
         },
         {
           property: "og:image:height",
-          content: 600
+          content: image.height
         },
         {
           name: "twitter:card",
