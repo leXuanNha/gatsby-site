@@ -9,7 +9,7 @@ import SEO from '../components/seo'
 
 const IndexPage = () => (
   <Layout>
-    <SEO title="Trang chủ" />
+    <SEO title="TekTee Zone | Home" />
     <Banner />
     <TopCategory />
     <OurProduct title='Hàng mới về' label='Mới' />
