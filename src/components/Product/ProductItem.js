@@ -29,7 +29,7 @@ const ProductItem = ({ ...props }) => {
         <div
           className={`block2-img wrap-pic-w of-hidden pos-relative ${productLabelClass}`}
         >
-          <img src={data.Image[0].thumbnails.full.url} alt={data.DisplayName} />
+          <img src={data.Image[0].thumbnails.full.url} alt={data.DisplayName} onClick={() => navigate(`/products/${data.PathName}`)} />
           <div className="block2-overlay trans-0-4" onClick={() => navigate(`/products/${data.PathName}`)}>
             {/* <div className="block2-btn-addcart w-size1 trans-0-4">
               <button

@@ -67,11 +67,10 @@ function removeFromCart(state, { productId }) {
 
 
 function updateQuantityToCart(state, { productId, size, count }) {
-  console.log('size', size);
   const products = [
     ...state.products
   ];
-  console.log('products', products);
+
   if (count === 0) {
     products.splice(products.findIndex(x => x.product === productId && x.size === size), 1);
   } else {

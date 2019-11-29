@@ -8,7 +8,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
-
+import { useSelector } from "react-redux"
 import Header from "./Header"
 import Footer from "./Footer"
 
@@ -28,9 +28,16 @@ const Layout = ({ children }) => {
     }
   `)
 
+  const loading = useSelector(state => state.commonReducer.loading)
+
   return (
     <>
       <Header siteTitle={data.site.siteMetadata.title} />
+      {loading &&
+        <div className="loading-overlay">
+          <div class="lds-dual-ring"></div>
+        </div>
+      }
       <div>
         <main>{children}</main>
         {/* <footer>
@@ -45,7 +52,7 @@ const Layout = ({ children }) => {
 }
 
 Layout.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node.isRequired
 }
 
 export default Layout

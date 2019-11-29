@@ -1,7 +1,9 @@
 import { cartReducer } from './actions';
+import { commonReducer } from "./actions/common";
 
 const reducers = {
-  cartReducer
+  cartReducer,
+  commonReducer
 };
 
 export { reducers };

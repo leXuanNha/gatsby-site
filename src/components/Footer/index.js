@@ -1,9 +1,13 @@
 import React from 'react';
 import { Link, navigate } from "gatsby";
+import { useDispatch } from "react-redux"
 import Airtable from 'airtable';
+import { showLoadingMessage, hideLoadingMessage } from "../../store/actions/common";
 
-const handleSubmit = (e) => {
+const handleSubmit = (e, dispatch) => {
   e.preventDefault()
+
+  dispatch(showLoadingMessage())
 
   const form = e.target;
 
@@ -15,20 +19,29 @@ const handleSubmit = (e) => {
 
   const base = new Airtable({ apiKey: 'keyTJm4V5i1tprmMb' }).base('appKeThV2yFTVBxZj');
 
-  form.reset();
-
-  navigate("/thank-subscribe");
-
   base('Subscribers').create([
     {
       "fields": {
         "Email": objectFormData.email
       }
     }
-  ]);
+  ], (err) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+
+    form.reset();
+
+    navigate("/thank-subscribe");
+
+    dispatch(hideLoadingMessage())
+  });
 }
 
 const Footer = () => {
+  const dispatch = useDispatch();
+
   return (
     <footer className="bg6 p-t-45 p-b-43 p-l-45 p-r-45">
       <div className="flex-w p-b-90">
@@ -79,7 +92,7 @@ const Footer = () => {
             Đăng ký để nhận thông tin khuyến mãi và sản phẩm mới
 				</h4>
 
-          <form name="subscribe-form" method="POST" onSubmit={handleSubmit}>
+          <form name="subscribe-form" method="POST" onSubmit={(e) => handleSubmit(e, dispatch)}>
             <div className="effect1 w-size9">
               <input className="s-text24 bg6 w-full p-b-5" type="email" name="email" placeholder="Email của bạn" />
               <span className="effect1-line"></span>

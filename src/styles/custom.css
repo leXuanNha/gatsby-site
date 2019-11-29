@@ -246,6 +246,9 @@
 
 .checkout-item img {
   width: 45px;
+  min-width: 40px;
+  overflow: hidden;
+  max-height: 70px;
 }
 
 .checkout-item .item-name {

@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import Select from 'react-select'
 import Airtable from 'airtable'
 import { clearCartMessage } from "../store/actions";
+import { showLoadingMessage, hideLoadingMessage } from "../store/actions/common";
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 import tinhThanhJson from '../dist/tinh_tp.json'
@@ -71,6 +72,8 @@ const processTotalBill = cartProducts => {
 const handleSubmitOrder = (e, params, dispatch) => {
   e.preventDefault();
 
+  dispatch(showLoadingMessage());
+
   const base = new Airtable({ apiKey: 'keyTJm4V5i1tprmMb' }).base('appKeThV2yFTVBxZj');
 
   const fieldsInput = [];
@@ -91,12 +94,17 @@ const handleSubmitOrder = (e, params, dispatch) => {
     })
   })
 
-  setTimeout(() => {
-    navigate("/checkout-success");
-    dispatch(clearCartMessage())
-  }, 200);
 
-  base('Orders').create(fieldsInput);
+  base('Orders').create(fieldsInput, (err) => {
+    if (err) {
+      console.error(err);
+      return;
+    };
+
+    navigate("/checkout-success");
+    dispatch(clearCartMessage());
+    dispatch(hideLoadingMessage())
+  })
 }
 
 const FAQPage = () => {
