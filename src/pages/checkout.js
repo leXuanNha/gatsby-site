@@ -102,8 +102,8 @@ const handleSubmitOrder = (e, params, dispatch) => {
     };
 
     navigate("/checkout-success");
-    dispatch(clearCartMessage());
     dispatch(hideLoadingMessage())
+    dispatch(clearCartMessage());
   })
 }
 
