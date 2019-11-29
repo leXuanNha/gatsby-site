@@ -4,6 +4,7 @@ import { useStaticQuery, graphql } from 'gatsby'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, navigate } from 'gatsby'
 import { updateQuantityToCartMessage } from '../../store/actions'
+import { object } from 'prop-types'
 
 const numberWithCommas = x => {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
@@ -45,15 +46,17 @@ const Cart = () => {
     }
   `)
 
-  const cartProducts = []
+  const cartProducts = [];
 
-  data.allAirtable.nodes.map(node => {
-    if (storageProducts.find(x => x.product === node.data.PathName)) {
+  storageProducts.map(p => {
+    const matchProduct = data.allAirtable.nodes.find(x => x.data.PathName === p.product);
+
+    if (matchProduct) {
       cartProducts.push({
-        ...node.data,
-        count: storageProducts.find(x => x.product === node.data.PathName)
-          .count,
-      })
+        ...matchProduct.data,
+        count: p.count,
+        size: p.size
+      });
     }
   })
 
@@ -103,7 +106,10 @@ const Cart = () => {
                             />
                           </div>
                         </td>
-                        <td className="column-2">{item.DisplayName}</td>
+                        <td className="column-2">
+                          <div>{item.DisplayName}</div>
+                          <div>{`Size ${item.size}`}</div>
+                        </td>
                         <td className="column-3 price-text">
                           {numberWithCommas(item.Price)}
                         </td>
@@ -115,6 +121,7 @@ const Cart = () => {
                                 dispatch(
                                   updateQuantityToCartMessage(
                                     item.PathName,
+                                    item.size,
                                     item.count - 1
                                   )
                                 )
@@ -130,6 +137,7 @@ const Cart = () => {
                               className="size8 m-text18 t-center num-product"
                               type="number"
                               name="num-product1"
+                              disabled
                               value={item.count}
                             />
 
@@ -139,6 +147,7 @@ const Cart = () => {
                                 dispatch(
                                   updateQuantityToCartMessage(
                                     item.PathName,
+                                    item.size,
                                     item.count + 1
                                   )
                                 )
@@ -159,6 +168,81 @@ const Cart = () => {
                   })}
                 </table>
               </div>
+
+              <div className="mobile-shopping-cart">
+                {cartProducts.map(item => {
+                  return (
+                    <div className="mobile-cart-row">
+                      <div
+                        className="cart-img-product b-rad-4 o-f-hidden"
+                        onClick={() =>
+                          navigate(`/products/${item.PathName}`)
+                        }
+                      >
+                        <img
+                          src={item.Image[0].thumbnails.full.url}
+                          alt={item.DisplayName}
+                        />
+                      </div>
+                      <div>
+                        <div className="s-text18">{item.DisplayName}</div>
+                        <div className="s-text15">{`Size ${item.size}`}</div>
+                        <div>
+                          <div className="flex-w bo5 of-hidden w-size17 num-group">
+                            <button
+                              className="btn-num-product-down color1 flex-c-m size7 bg8 eff2"
+                              onClick={() =>
+                                dispatch(
+                                  updateQuantityToCartMessage(
+                                    item.PathName,
+                                    item.size,
+                                    item.count - 1
+                                  )
+                                )
+                              }
+                            >
+                              <i
+                                className="fs-12 fa fa-minus"
+                                aria-hidden="true"
+                              ></i>
+                            </button>
+
+                            <input
+                              className="size8 m-text18 t-center num-product"
+                              type="number"
+                              name="num-product1"
+                              disabled
+                              value={item.count}
+                            />
+
+                            <button
+                              className="btn-num-product-up color1 flex-c-m size7 bg8 eff2"
+                              onClick={() =>
+                                dispatch(
+                                  updateQuantityToCartMessage(
+                                    item.PathName,
+                                    item.size,
+                                    item.count + 1
+                                  )
+                                )
+                              }
+                            >
+                              <i
+                                className="fs-12 fa fa-plus"
+                                aria-hidden="true"
+                              ></i>
+                            </button>
+                          </div>
+                        </div>
+                        <div className="price-text s-text18">
+                          {`Tổng: ${numberWithCommas(item.Price * item.count)}`}
+                        </div>
+                      </div>
+                    </div>
+                  )
+                }
+                )}
+              </div>
             </div>
 
             <div className="bo8 cart-total">
@@ -170,7 +254,7 @@ const Cart = () => {
             </div>
 
             <div className="flex-w flex-sb-m p-t-25 p-b-25 bo8 p-l-40 p-r-30 p-lr-15-sm cart-btn-group">
-              <div className="size11 trans-0-4 m-t-10 m-b-10">
+              <div className="size11 trans-0-4 m-t-10 m-b-10 cart-func-btn">
                 <button
                   className="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4"
                   onClick={() => navigate('/collection/all')}
@@ -178,7 +262,7 @@ const Cart = () => {
                   Tiếp tục mua hàng
                 </button>
               </div>
-              <div className="size10 trans-0-4 m-t-10 m-b-10">
+              <div className="size10 trans-0-4 m-t-10 m-b-10 cart-func-btn">
                 <button
                   className="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4"
                   onClick={() => navigate('/checkout/')}
@@ -189,21 +273,21 @@ const Cart = () => {
             </div>
           </div>
         ) : (
-          <div className="text-center">
-            <h2 className="text-center m-text16">
-              Giỏ hàng của bạn đang trống
+            <div className="text-center">
+              <h2 className="text-center m-text16">
+                Giỏ hàng của bạn đang trống
             </h2>
-            <div
-              className="size10 trans-0-4 m-t-10 m-b-10"
-              style={{ margin: '0 auto', width: 300 }}
-              onClick={() => navigate('/collection/all')}
-            >
-              <button className="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
-                Tiếp tục mua hàng
+              <div
+                className="size10 trans-0-4 m-t-10 m-b-10"
+                style={{ margin: '0 auto', width: 300 }}
+                onClick={() => navigate('/collection/all')}
+              >
+                <button className="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
+                  Tiếp tục mua hàng
               </button>
+              </div>
             </div>
-          </div>
-        )}
+          )}
       </section>
     </React.Fragment>
   )

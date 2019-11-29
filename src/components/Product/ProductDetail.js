@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 // import PropTypes from "prop-types";
 import { useDispatch } from 'react-redux'
 import { useStaticQuery, graphql } from 'gatsby'
-import { Link } from 'gatsby'
+import { Link, navigate } from 'gatsby'
 import Image from '../Images'
 import Layout from '../layout'
 import SEO from '../seo'
@@ -58,7 +58,7 @@ const renderRelatedProducts = (relatedProducts, pathName) => {
   )
 }
 
-const ProductDetailPage = ({ pageContext: { data }, props }) => {
+const ProductDetailPage = ({ pageContext: { data } }) => {
   const [size, setSize] = useState('S')
 
   const [quantity, setQuantity] = useState(1)
@@ -188,7 +188,12 @@ const ProductDetailPage = ({ pageContext: { data }, props }) => {
             <div className="btn-addcart-product-detail size16 trans-0-4 m-t-5 m-b-5">
               <button
                 className="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4"
-                onClick={() => dispatch(addToCartMessage(data))}
+                onClick={() => {
+                  dispatch(addToCartMessage(data, size));
+                  setTimeout(() => {
+                    navigate("/cart/")
+                  }, 200);
+                }}
               >
                 Thêm vào giỏ hàng
               </button>
@@ -268,7 +273,7 @@ const ProductDetailPage = ({ pageContext: { data }, props }) => {
       </div>
 
       {renderRelatedProducts(relatedProducts, data['PathName'])}
-    </Layout>
+    </Layout >
   )
 }
 

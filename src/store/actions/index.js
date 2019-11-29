@@ -2,16 +2,16 @@ const ADD_TO_CART = 'ADD_TO_CART';
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 const UPDATE_QUANTITY_TO_CART = 'UPDATE_QUANTITY_TO_CART';
 
-export function addToCartMessage(product) {
-  return buildMessage(ADD_TO_CART, { product });
+export function addToCartMessage(product, size) {
+  return buildMessage(ADD_TO_CART, { product, size });
 }
 
 export function removeFromCartMessage(productId) {
   return buildMessage(REMOVE_FROM_CART, { productId });
 }
 
-export function updateQuantityToCartMessage(productId, count) {
-  return buildMessage(UPDATE_QUANTITY_TO_CART, { productId, count });
+export function updateQuantityToCartMessage(productId, size, count) {
+  return buildMessage(UPDATE_QUANTITY_TO_CART, { productId, size, count });
 }
 
 function buildMessage(type, payload) {
@@ -32,13 +32,13 @@ function handleMessage(state, { type, payload }) {
   return handler(state, payload);
 }
 
-function addToCart(state, { product }) {
+function addToCart(state, { product, size }) {
   const products = [
     ...state.products
   ];
 
-  if (!products.find(x => x.product === product.PathName)) {
-    products.push({ product: product.PathName, count: 1 });
+  if (!products.find(x => x.product === product.PathName && x.size === size)) {
+    products.push({ product: product.PathName, count: 1, size });
   }
 
   return {
@@ -59,15 +59,16 @@ function removeFromCart(state, { productId }) {
   };
 }
 
-function updateQuantityToCart(state, { productId, count }) {
+function updateQuantityToCart(state, { productId, size, count }) {
+  console.log('size', size);
   const products = [
     ...state.products
   ];
-  console.log('count', count);
+  console.log('products', products);
   if (count === 0) {
-    products.splice(products.findIndex(x => x.product === productId), 1);
+    products.splice(products.findIndex(x => x.product === productId && x.size === size), 1);
   } else {
-    products.find(x => x.product === productId).count = count;
+    products.find(x => x.product === productId && x.size === size).count = count;
   }
 
   return {

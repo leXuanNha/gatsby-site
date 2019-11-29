@@ -94,15 +94,27 @@ const FAQPage = () => {
 
   const cartProducts = []
 
-  data.allAirtable.nodes.map(node => {
-    if (storageProducts.find(x => x.product === node.data.PathName)) {
+  storageProducts.map(p => {
+    const matchProduct = data.allAirtable.nodes.find(x => x.data.PathName === p.product);
+
+    if (matchProduct) {
       cartProducts.push({
-        ...node.data,
-        count: storageProducts.find(x => x.product === node.data.PathName)
-          .count,
-      })
+        ...matchProduct.data,
+        count: p.count,
+        size: p.size
+      });
     }
   })
+
+  // data.allAirtable.nodes.map(node => {
+  //   if (storageProducts.find(x => x.product === node.data.PathName)) {
+  //     cartProducts.push({
+  //       ...node.data,
+  //       count: storageProducts.find(x => x.product === node.data.PathName)
+  //         .count,
+  //     })
+  //   }
+  // })
 
   const [tinhThanh, setTinhThanh] = useState(null)
 
@@ -231,7 +243,7 @@ const FAQPage = () => {
               </div>
 
               <div
-                className="size10 trans-0-4 m-t-50 m-b-30"
+                className="size10 trans-0-4 m-t-50 m-b-50 order-btn-div"
                 style={{ width: 300, float: 'right' }}
               >
                 <button
@@ -269,7 +281,10 @@ const FAQPage = () => {
                       src={item.Image[0].thumbnails.full.url}
                       alt={item.DisplayName}
                     />
-                    <div className="item-name s-text15">{item.DisplayName}</div>
+                    <div className="item-name s-text15">
+                      <div>{item.DisplayName}</div>
+                      <div>{`Size ${item.size}`}</div>
+                    </div>
                     <div className="item-count s-text12">{item.count}</div>
                     <div className="item-sub-price price-text s-text12">
                       {numberWithCommas(item.Price * item.count)}
@@ -290,48 +305,48 @@ const FAQPage = () => {
                 ) : !quanHuyen ? (
                   <span>-</span>
                 ) : (
-                  <p className="s-text6 price-text">
-                    {numberWithCommas(tinhThanh.code === '79' ? 20000 : 35000)}
-                  </p>
-                )}
+                      <p className="s-text6 price-text">
+                        {numberWithCommas(tinhThanh.code === '79' ? 20000 : 35000)}
+                      </p>
+                    )}
               </div>
               <div className="checkout-bill">
                 <p className="s-text18 price-text">Tổng cộng</p>
                 {!quanHuyen ||
-                cartProducts.length >= 2 ||
-                cartProducts[0].count >= 2 ? (
-                  <p className="s-text18 price-text">
-                    {numberWithCommas(processTotalBill(cartProducts))}
-                  </p>
-                ) : tinhThanh.code === '79' ? (
-                  <p className="s-text18 price-text">
-                    {numberWithCommas(processTotalBill(cartProducts) + 20000)}
-                  </p>
-                ) : (
-                  <p className="s-text18 price-text">
-                    {numberWithCommas(processTotalBill(cartProducts) + 35000)}
-                  </p>
-                )}
+                  cartProducts.length >= 2 ||
+                  cartProducts[0].count >= 2 ? (
+                    <p className="s-text18 price-text">
+                      {numberWithCommas(processTotalBill(cartProducts))}
+                    </p>
+                  ) : tinhThanh.code === '79' ? (
+                    <p className="s-text18 price-text">
+                      {numberWithCommas(processTotalBill(cartProducts) + 20000)}
+                    </p>
+                  ) : (
+                      <p className="s-text18 price-text">
+                        {numberWithCommas(processTotalBill(cartProducts) + 35000)}
+                      </p>
+                    )}
               </div>
             </div>
           </div>
         </div>
       ) : (
-        <div className="text-center m-b-50">
-          <h2 className="text-center m-text16">
-            Bạn chưa có sản phẩm nào để thanh toán
+          <div className="text-center m-b-50">
+            <h2 className="text-center m-text16">
+              Bạn chưa có sản phẩm nào để thanh toán
           </h2>
-          <div
-            className="size10 trans-0-4 m-t-10 m-b-10"
-            style={{ margin: '0 auto', width: 300 }}
-            onClick={() => navigate('/collection/all')}
-          >
-            <button className="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
-              Tiếp tục mua hàng
+            <div
+              className="size10 trans-0-4 m-t-10 m-b-10"
+              style={{ margin: '0 auto', width: 300 }}
+              onClick={() => navigate('/collection/all')}
+            >
+              <button className="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
+                Tiếp tục mua hàng
             </button>
+            </div>
           </div>
-        </div>
-      )}
+        )}
     </Layout>
   )
 }

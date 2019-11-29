@@ -86,7 +86,7 @@ class Header extends React.Component {
         <div className="container-menu-header-v2 p-t-26">
           <div className="topbar2">
             <div className="topbar-social">
-              <a href="https://www.facebook.com/tektee.zone/" className="topbar-social-item fa fa-facebook" target="_blank"></a>
+              <a href="https://www.facebook.com/tektee.zone/" className="topbar-social-item fa fa-facebook-official" target="_blank"></a>
             </div>
 
             <Link to="/" className="logo2">
@@ -163,7 +163,7 @@ class Header extends React.Component {
 
               <li className="item-topbar-mobile p-l-10">
                 <div className="topbar-social-mobile">
-                  <a href="https://www.facebook.com/tektee.zone/" className="topbar-social-item fa fa-facebook" target="_blank"></a>
+                  <a href="https://www.facebook.com/tektee.zone/" className="topbar-social-item fa fa-facebook-official" target="_blank"></a>
                 </div>
               </li>
 

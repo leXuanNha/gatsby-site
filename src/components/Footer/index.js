@@ -49,7 +49,7 @@ const Footer = () => {
 					</p>
 
             <div className="flex-m p-t-30">
-              <a href="https://www.facebook.com/tektee.zone/" className="fs-18 color1 p-r-20 fa fa-facebook" target="_blank"></a>
+              <a href="https://www.facebook.com/tektee.zone/" className="fs-18 color1 p-r-20 fa fa-facebook-official" target="_blank"></a>
             </div>
           </div>
         </div>

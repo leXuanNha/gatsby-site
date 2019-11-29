@@ -24,21 +24,21 @@ const ProductItem = ({ ...props }) => {
   const dispatch = useDispatch()
 
   return (
-    <div className="col-sm-6 col-md-4 col-lg-3 p-b-50">
+    <div className="col-sm-6 col-md-4 col-lg-3 p-b-50 product-item-wrapper">
       <div className="block2">
         <div
           className={`block2-img wrap-pic-w of-hidden pos-relative ${productLabelClass}`}
         >
           <img src={data.Image[0].thumbnails.full.url} alt={data.DisplayName} />
-          <div className="block2-overlay trans-0-4">
-            <div className="block2-btn-addcart w-size1 trans-0-4">
+          <div className="block2-overlay trans-0-4" onClick={() => navigate(`/products/${data.PathName}`)}>
+            {/* <div className="block2-btn-addcart w-size1 trans-0-4">
               <button
                 className="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
-                onClick={() => dispatch(addToCartMessage(data))}
+                onClick={(e) => { dispatch(addToCartMessage(data)); e.stopPropagation() }}
               >
                 Thêm vào giỏ
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
         <div className="block2-txt p-t-20">
