@@ -51,14 +51,21 @@ const Footer = () => {
 				</h4>
 
           <div>
-            <p className="s-text24 w-size27 m-b-5">
+            <p className="s-text24 w-size27 m-b-15">
               Địa chỉ: 21A đường số 2, P.Hiệp Bình Phước, Q.Thủ Đức, TP.Hồ Chí Minh<br />
               Số điện thoại: 0966 928 690
 					</p>
 
-            <div className="flex-m p-t-0">
+            {/* <div className="flex-m p-t-0">
               <a href="https://www.facebook.com/tektee.zone/" className="color1 p-r-20 fa fa-facebook-official" target="_blank" style={{ fontSize: 25 }}></a>
-            </div>
+            </div> */}
+
+            <iframe
+              src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Ftektee.zone%2F&tabs&width=340&height=300&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=2432388470422348"
+              width="340"
+              height="300"
+              style={{ border: "none", overflow: "hidden", marginBottom: -180 }} scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+
           </div>
         </div>
 

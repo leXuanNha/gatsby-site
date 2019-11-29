@@ -85,9 +85,9 @@ class Header extends React.Component {
       <header className="header2">
         <div className="container-menu-header-v2 p-t-26">
           <div className="topbar2">
-            <div className="topbar-social">
+            {/* <div className="topbar-social">
               <a href="https://www.facebook.com/tektee.zone/" className="topbar-social-item fa fa-facebook-official" target="_blank"></a>
-            </div>
+            </div> */}
 
             <Link to="/" className="logo2">
               <Image imgName='imgLogo' />
@@ -161,11 +161,11 @@ class Header extends React.Component {
 						    </span>
               </li>
 
-              <li className="item-topbar-mobile p-l-10">
+              {/* <li className="item-topbar-mobile p-l-10">
                 <div className="topbar-social-mobile">
                   <a href="https://www.facebook.com/tektee.zone/" className="topbar-social-item fa fa-facebook-official" target="_blank"></a>
                 </div>
-              </li>
+              </li> */}
 
               <li className="item-menu-mobile">
                 <Link to="/">Trang chủ</Link>
