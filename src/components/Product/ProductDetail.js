@@ -63,6 +63,8 @@ const ProductDetailPage = ({ pageContext: { data } }) => {
 
   const [quantity, setQuantity] = useState(1)
 
+  const [mainImageIndex, setMainImageIndex] = useState(0)
+
   const dispatch = useDispatch()
 
   const relatedProducts = useStaticQuery(graphql`
@@ -76,7 +78,7 @@ const ProductDetailPage = ({ pageContext: { data } }) => {
             Price
             Image {
               thumbnails {
-                full {
+                large {
                   url
                 }
               }
@@ -110,22 +112,26 @@ const ProductDetailPage = ({ pageContext: { data } }) => {
       <div className="container bgwhite p-t-35 p-b-80">
         <div className="flex-w flex-sb">
           <div className="w-size14 p-t-30 respon5">
-            <div className="product-detail-main-img">
-              <img src={data.Image[0].url} alt="" />
-            </div>
+            <div
+              className="product-detail-main-img"
+              style={{
+                backgroundImage: `url(${data.Image[mainImageIndex].thumbnails.large.url})`,
+              }}
+            />
             <div className="product-detail-sm-block">
-              <div className="product-detail-sm-img active">
-                <img src={data.Image[0].url} alt="" />
-              </div>
-              <div className="product-detail-sm-img">
-                <img src={data.Image[0].url} alt="" />
-              </div>
-              <div className="product-detail-sm-img">
-                <img src={data.Image[0].url} alt="" />
-              </div>
-              <div className="product-detail-sm-img">
-                <img src={data.Image[0].url} alt="" />
-              </div>
+              {data.Image.map((img, index) => {
+                return (
+                  <div
+                    className={`product-detail-sm-img ${
+                      index === mainImageIndex ? 'active' : ''
+                    }`}
+                    style={{
+                      backgroundImage: `url(${img.thumbnails.large.url})`,
+                    }}
+                    onClick={() => setMainImageIndex(index)}
+                  />
+                )
+              })}
             </div>
           </div>
 
@@ -189,10 +195,10 @@ const ProductDetailPage = ({ pageContext: { data } }) => {
               <button
                 className="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4"
                 onClick={() => {
-                  dispatch(addToCartMessage(data, size, quantity));
+                  dispatch(addToCartMessage(data, size, quantity))
                   setTimeout(() => {
-                    navigate("/cart/")
-                  }, 200);
+                    navigate('/cart/')
+                  }, 200)
                 }}
               >
                 Thêm vào giỏ hàng
@@ -273,7 +279,7 @@ const ProductDetailPage = ({ pageContext: { data } }) => {
       </div>
 
       {renderRelatedProducts(relatedProducts, data['PathName'])}
-    </Layout >
+    </Layout>
   )
 }
 

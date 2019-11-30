@@ -35,7 +35,7 @@ const Cart = () => {
             Price
             Image {
               thumbnails {
-                full {
+                large {
                   url
                 }
               }
@@ -46,17 +46,19 @@ const Cart = () => {
     }
   `)
 
-  const cartProducts = [];
+  const cartProducts = []
 
   storageProducts.map(p => {
-    const matchProduct = data.allAirtable.nodes.find(x => x.data.PathName === p.product);
+    const matchProduct = data.allAirtable.nodes.find(
+      x => x.data.PathName === p.product
+    )
 
     if (matchProduct) {
       cartProducts.push({
         ...matchProduct.data,
         count: p.count,
-        size: p.size
-      });
+        size: p.size,
+      })
     }
   })
 
@@ -101,7 +103,7 @@ const Cart = () => {
                             }
                           >
                             <img
-                              src={item.Image[0].thumbnails.full.url}
+                              src={item.Image[0].thumbnails.large.url}
                               alt={item.DisplayName}
                             />
                           </div>
@@ -175,12 +177,10 @@ const Cart = () => {
                     <div className="mobile-cart-row">
                       <div
                         className="cart-img-product b-rad-4 o-f-hidden"
-                        onClick={() =>
-                          navigate(`/products/${item.PathName}`)
-                        }
+                        onClick={() => navigate(`/products/${item.PathName}`)}
                       >
                         <img
-                          src={item.Image[0].thumbnails.full.url}
+                          src={item.Image[0].thumbnails.large.url}
                           alt={item.DisplayName}
                         />
                       </div>
@@ -240,8 +240,7 @@ const Cart = () => {
                       </div>
                     </div>
                   )
-                }
-                )}
+                })}
               </div>
             </div>
 
@@ -273,21 +272,21 @@ const Cart = () => {
             </div>
           </div>
         ) : (
-            <div className="text-center">
-              <h2 className="text-center m-text16">
-                Giỏ hàng của bạn đang trống
+          <div className="text-center">
+            <h2 className="text-center m-text16">
+              Giỏ hàng của bạn đang trống
             </h2>
-              <div
-                className="size10 trans-0-4 m-t-10 m-b-10"
-                style={{ margin: '0 auto', width: 300 }}
-                onClick={() => navigate('/collection/all')}
-              >
-                <button className="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
-                  Tiếp tục mua hàng
+            <div
+              className="size10 trans-0-4 m-t-10 m-b-10"
+              style={{ margin: '0 auto', width: 300 }}
+              onClick={() => navigate('/collection/all')}
+            >
+              <button className="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
+                Tiếp tục mua hàng
               </button>
-              </div>
             </div>
-          )}
+          </div>
+        )}
       </section>
     </React.Fragment>
   )

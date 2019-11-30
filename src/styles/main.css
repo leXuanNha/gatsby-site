@@ -654,7 +654,7 @@ iframe {
   position: absolute;
   left: 52px;
   top: 50%;
-  width: 120px;
+  width: 200px;
   -webkit-transform: translateY(-50%);
   -moz-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
@@ -1005,7 +1005,7 @@ li.sale-noti > a {
 -----------------------------------------------------------*/
 .logo-mobile {
   display: block;
-  width: 120px;
+  width: 180px;
 }
 
 .logo-mobile img {
@@ -1196,7 +1196,7 @@ li.sale-noti > a {
 /* ------------------------------------ */
 .logo2 {
   display: block;
-  width: 120px;
+  width: 240px;
 }
 
 .logo2 img {

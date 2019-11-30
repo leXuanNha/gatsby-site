@@ -4,8 +4,8 @@ import { useStaticQuery, graphql } from 'gatsby'
 import { useSelector, useDispatch } from 'react-redux'
 import Select from 'react-select'
 import Airtable from 'airtable'
-import { clearCartMessage } from "../store/actions";
-import { showLoadingMessage, hideLoadingMessage } from "../store/actions/common";
+import { clearCartMessage } from '../store/actions'
+import { showLoadingMessage, hideLoadingMessage } from '../store/actions/common'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 import tinhThanhJson from '../dist/tinh_tp.json'
@@ -70,45 +70,48 @@ const processTotalBill = cartProducts => {
 }
 
 const handleSubmitOrder = (e, params, dispatch) => {
-  e.preventDefault();
+  e.preventDefault()
 
-  dispatch(showLoadingMessage());
+  dispatch(showLoadingMessage())
 
-  const base = new Airtable({ apiKey: 'keyTJm4V5i1tprmMb' }).base('appKeThV2yFTVBxZj');
+  const base = new Airtable({ apiKey: 'keyTJm4V5i1tprmMb' }).base(
+    'appKeThV2yFTVBxZj'
+  )
 
-  const fieldsInput = [];
+  const fieldsInput = []
 
   params.cartProducts.map(item => {
     fieldsInput.push({
-      "fields": {
-        "Client name": params.fullName,
-        "Client email": params.email,
-        "Client phone": params.phoneNumber,
-        "Client address": `${params.address}, ${params.quanHuyen}, ${params.tinhThanh}`,
-        "Product": item.PathName,
-        "Size": item.size,
-        "Quantity": item.count,
-        "Status": "Waiting for confirmed",
-        "Unit Price": item.Price,
-      }
+      fields: {
+        'Client name': params.fullName,
+        'Client email': params.email,
+        'Client phone': params.phoneNumber,
+        'Client address': `${params.address}, ${params.quanHuyen}, ${params.tinhThanh}`,
+        Product: item.PathName,
+        Size: item.size,
+        Quantity: item.count,
+        Status: 'Waiting for confirmed',
+        'Unit Price': item.Price,
+      },
     })
   })
 
-
-  base('Orders').create(fieldsInput, (err) => {
+  base('Orders').create(fieldsInput, err => {
     if (err) {
-      console.error(err);
-      return;
-    };
+      console.error(err)
+      return
+    }
 
-    navigate("/checkout-success");
+    navigate('/checkout-success')
     dispatch(hideLoadingMessage())
-    dispatch(clearCartMessage());
+    setTimeout(() => {
+      dispatch(clearCartMessage())
+    }, 250)
   })
 }
 
 const FAQPage = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   const storageProducts = useSelector(state => state.cartReducer.products)
 
@@ -124,7 +127,7 @@ const FAQPage = () => {
             Price
             Image {
               thumbnails {
-                full {
+                large {
                   url
                 }
               }
@@ -138,14 +141,16 @@ const FAQPage = () => {
   const cartProducts = []
 
   storageProducts.map(p => {
-    const matchProduct = data.allAirtable.nodes.find(x => x.data.PathName === p.product);
+    const matchProduct = data.allAirtable.nodes.find(
+      x => x.data.PathName === p.product
+    )
 
     if (matchProduct) {
       cartProducts.push({
         ...matchProduct.data,
         count: p.count,
-        size: p.size
-      });
+        size: p.size,
+      })
     }
   })
 
@@ -290,7 +295,7 @@ const FAQPage = () => {
                     !tinhThanh ||
                     !quanHuyen
                   }
-                  onClick={(e) => {
+                  onClick={e => {
                     const params = {
                       fullName,
                       email,
@@ -298,10 +303,10 @@ const FAQPage = () => {
                       address,
                       tinhThanh: tinhThanh.name,
                       quanHuyen: quanHuyen.name_with_type,
-                      cartProducts
-                    };
+                      cartProducts,
+                    }
 
-                    handleSubmitOrder(e, params, dispatch);
+                    handleSubmitOrder(e, params, dispatch)
                   }}
                 >
                   Đặt hàng
@@ -319,7 +324,7 @@ const FAQPage = () => {
                 return (
                   <div className="checkout-item" key={item.PathName}>
                     <img
-                      src={item.Image[0].thumbnails.full.url}
+                      src={item.Image[0].thumbnails.large.url}
                       alt={item.DisplayName}
                     />
                     <div className="item-name s-text15">
@@ -346,48 +351,48 @@ const FAQPage = () => {
                 ) : !quanHuyen ? (
                   <span>-</span>
                 ) : (
-                      <p className="s-text6 price-text">
-                        {numberWithCommas(tinhThanh.code === '79' ? 20000 : 35000)}
-                      </p>
-                    )}
+                  <p className="s-text6 price-text">
+                    {numberWithCommas(tinhThanh.code === '79' ? 20000 : 35000)}
+                  </p>
+                )}
               </div>
               <div className="checkout-bill">
                 <p className="s-text18">Tổng cộng</p>
                 {!quanHuyen ||
-                  cartProducts.length >= 2 ||
-                  cartProducts[0].count >= 2 ? (
-                    <p className="s-text18 price-text">
-                      {numberWithCommas(processTotalBill(cartProducts))}
-                    </p>
-                  ) : tinhThanh.code === '79' ? (
-                    <p className="s-text18 price-text">
-                      {numberWithCommas(processTotalBill(cartProducts) + 20000)}
-                    </p>
-                  ) : (
-                      <p className="s-text18 price-text">
-                        {numberWithCommas(processTotalBill(cartProducts) + 35000)}
-                      </p>
-                    )}
+                cartProducts.length >= 2 ||
+                cartProducts[0].count >= 2 ? (
+                  <p className="s-text18 price-text">
+                    {numberWithCommas(processTotalBill(cartProducts))}
+                  </p>
+                ) : tinhThanh.code === '79' ? (
+                  <p className="s-text18 price-text">
+                    {numberWithCommas(processTotalBill(cartProducts) + 20000)}
+                  </p>
+                ) : (
+                  <p className="s-text18 price-text">
+                    {numberWithCommas(processTotalBill(cartProducts) + 35000)}
+                  </p>
+                )}
               </div>
             </div>
           </div>
         </div>
       ) : (
-          <div className="text-center m-b-50">
-            <h2 className="text-center m-text16">
-              Bạn chưa có sản phẩm nào để thanh toán
+        <div className="text-center m-b-50">
+          <h2 className="text-center m-text16">
+            Bạn chưa có sản phẩm nào để thanh toán
           </h2>
-            <div
-              className="size10 trans-0-4 m-t-10 m-b-10"
-              style={{ margin: '0 auto', width: 300 }}
-              onClick={() => navigate('/collection/all')}
-            >
-              <button className="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
-                Tiếp tục mua hàng
+          <div
+            className="size10 trans-0-4 m-t-10 m-b-10"
+            style={{ margin: '0 auto', width: 300 }}
+            onClick={() => navigate('/collection/all')}
+          >
+            <button className="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
+              Tiếp tục mua hàng
             </button>
-            </div>
           </div>
-        )}
+        </div>
+      )}
     </Layout>
   )
 }

@@ -1,24 +1,26 @@
 import React from 'react'
-import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
-import ProductItem from '../Product/ProductItem';
+import PropTypes from 'prop-types'
+import { useStaticQuery, graphql } from 'gatsby'
+import ProductItem from '../Product/ProductItem'
 
-const renderProductList = (data) => {
-  const productList = [];
+const renderProductList = data => {
+  const productList = []
 
   for (let i = 0; i < 4; i++) {
-    productList.push(<ProductItem data={data.allAirtable.nodes[i].data} />);
+    productList.push(<ProductItem data={data.allAirtable.nodes[i].data} />)
   }
 
-  return <React.Fragment>{productList}</React.Fragment>;
+  return <React.Fragment>{productList}</React.Fragment>
 }
 
 const OurProduct = ({ ...props }) => {
-  const { title } = props;
+  const { title } = props
 
   const data = useStaticQuery(graphql`
     query outProductQuery {
-      allAirtable(filter: {table: {eq: "Tshirt"}, data: {Label: {eq: "Mới"}}}) {
+      allAirtable(
+        filter: { table: { eq: "Tshirt" }, data: { Label: { eq: "Mới" } } }
+      ) {
         nodes {
           data {
             DisplayName
@@ -27,7 +29,7 @@ const OurProduct = ({ ...props }) => {
             Price
             Image {
               thumbnails {
-                full {
+                large {
                   url
                 }
               }
@@ -35,21 +37,17 @@ const OurProduct = ({ ...props }) => {
           }
         }
       }
-    }`
-  );
+    }
+  `)
 
   return (
     <section className="bgwhite p-t-45 p-b-58">
       <div className="container">
         <div className="sec-title p-b-22">
-          <h1 className="m-text5 t-center">
-            {title}
-          </h1>
+          <h1 className="m-text5 t-center">{title}</h1>
         </div>
 
-        <div className="row">
-          {renderProductList(data)}
-        </div>
+        <div className="row">{renderProductList(data)}</div>
       </div>
     </section>
   )
@@ -57,8 +55,7 @@ const OurProduct = ({ ...props }) => {
 
 OurProduct.propTypes = {
   title: PropTypes.string.isRequired,
-  label: PropTypes.string
+  label: PropTypes.string,
 }
 
-
-export default OurProduct;
+export default OurProduct
