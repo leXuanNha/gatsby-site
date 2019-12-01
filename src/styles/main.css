@@ -1649,7 +1649,7 @@ li.sale-noti > a {
   -ms-transform: translateX(-50%);
   -o-transform: translateX(-50%);
   transform: translateX(-50%);
-  bottom: 20px;
+  bottom: 40px;
 
   box-shadow: 0 1px 3px 0px rgba(0, 0, 0, 0.1);
   -moz-box-shadow: 0 1px 3px 0px rgba(0, 0, 0, 0.1);
@@ -1662,7 +1662,8 @@ li.sale-noti > a {
 ///////////////////////////////////////////////////////////
 */
 .block2-labelsale::before,
-.block2-labelnew::before {
+.block2-labelnew::before,
+.block2-labelbestseller::before {
   z-index: 100;
   font-family: Montserrat-Regular;
   font-size: 12px;
@@ -1689,7 +1690,12 @@ li.sale-noti > a {
 
 .block2-labelnew::before {
   background-color: #66a8a6;
-  content: 'New';
+  content: 'Mới';
+}
+
+.block2-labelbestseller::before {
+  background-color: #e65540;
+  content: 'Hot';
 }
 
 /* ------------------------------------ */

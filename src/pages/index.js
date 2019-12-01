@@ -2,9 +2,11 @@ import React from 'react'
 // import { Link } from 'gatsby'
 
 import Layout from '../components/layout'
-import Banner from "../components/Banner"
-import TopCategory from "../components/TopCategory"
-import OurProduct from "../components/OurProduct"
+import Banner from '../components/Banner'
+import TopCategory from '../components/TopCategory'
+import NewProduct from '../components/NewProduct'
+import BestSellerProduct from '../components/BestSellerProduct'
+import FeaturedTee from '../components/FeaturedTee'
 import SEO from '../components/seo'
 
 const IndexPage = () => (
@@ -12,8 +14,9 @@ const IndexPage = () => (
     <SEO title="TekTee Zone | Home" />
     <Banner />
     <TopCategory />
-    <OurProduct title='Hàng mới về' label='Mới' />
-    {/* <OurProduct title='Bán chạy' label="Bán chạy" /> */}
+    <NewProduct />
+    <BestSellerProduct />
+    <FeaturedTee />
   </Layout>
 )
 

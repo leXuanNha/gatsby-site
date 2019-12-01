@@ -21,6 +21,10 @@ const ProductItem = ({ ...props }) => {
     productLabelClass = 'block2-labelsale'
   }
 
+  if (data.Label === 'Bán chạy') {
+    productLabelClass = 'block2-labelbestseller'
+  }
+
   const dispatch = useDispatch()
 
   return (

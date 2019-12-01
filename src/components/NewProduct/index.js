@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { useStaticQuery, graphql } from 'gatsby'
 import ProductItem from '../Product/ProductItem'
 
@@ -13,11 +12,9 @@ const renderProductList = data => {
   return <React.Fragment>{productList}</React.Fragment>
 }
 
-const OurProduct = ({ ...props }) => {
-  const { title } = props
-
-  const data = useStaticQuery(graphql`
-    query outProductQuery {
+const NewProduct = () => {
+  const newProducts = useStaticQuery(graphql`
+    query newProductsQuery {
       allAirtable(
         filter: { table: { eq: "Tshirt" }, data: { Label: { eq: "Mới" } } }
       ) {
@@ -44,18 +41,13 @@ const OurProduct = ({ ...props }) => {
     <section className="bgwhite p-t-45 p-b-58">
       <div className="container">
         <div className="sec-title p-b-22">
-          <h1 className="m-text5 t-center">{title}</h1>
+          <h1 className="m-text5 t-center">Hàng mới về</h1>
         </div>
 
-        <div className="row">{renderProductList(data)}</div>
+        <div className="row">{renderProductList(newProducts)}</div>
       </div>
     </section>
   )
 }
 
-OurProduct.propTypes = {
-  title: PropTypes.string.isRequired,
-  label: PropTypes.string,
-}
-
-export default OurProduct
+export default NewProduct

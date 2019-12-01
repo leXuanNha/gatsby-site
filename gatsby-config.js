@@ -4,8 +4,8 @@ module.exports = {
     description: `Những chiếc áo xịn xò và đầy ắp thông điệp của dev, mang lại cảm giác vui vẻ cả ngày và hào hứng cho mọi người biết bạn là một developer chân chính.`,
     author: `@TekTeeZone`,
     keywords: `ao thun, áo thun, developer, it, tektee, zone, tshirt, t-shirt, shopping, software, technology, web, mobile, programmer, programming, ios, android, aothun, lập trình, lập trình viên, dev`,
-    siteUrl: "https://tekteezone.com",
-    image: "/images/metaImage.png"
+    siteUrl: 'https://tekteezone.com',
+    image: '/images/metaImage.png',
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -50,16 +50,22 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: "UA-XXXXXXXXX-X",
+        trackingId: 'UA-XXXXXXXXX-X',
       },
     },
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
-        policy: [{ userAgent: '*', allow: '/' }]
-      }
+        policy: [{ userAgent: '*', allow: '/' }],
+      },
     },
     `gatsby-plugin-sitemap`,
+    {
+      resolve: `gatsby-plugin-facebook-pixel`,
+      options: {
+        pixelId: '1012765739076735',
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
