@@ -93,6 +93,13 @@ const Image = ({ ...props }) => {
           }
         }
       }
+      imgFeedbackSuccessIcon: file(relativePath: { eq: "icons/feedback.png" }) {
+        childImageSharp {
+          fluid {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
     }
   `)
 

@@ -1,8 +1,61 @@
 import React from 'react'
 // import PropTypes from "prop-types"
-import { Link } from 'gatsby'
+import { Link, navigate } from 'gatsby'
+import { useDispatch } from 'react-redux'
+import Airtable from 'airtable'
+import {
+  showLoadingMessage,
+  hideLoadingMessage,
+} from '../../store/actions/common'
+
+const handleSubmit = (e, dispatch) => {
+  e.preventDefault()
+
+  dispatch(showLoadingMessage())
+
+  const form = e.target
+
+  const formData = new FormData(form)
+
+  const objectFormData = {}
+
+  formData.forEach((value, key) => {
+    objectFormData[key] = value
+  })
+
+  const base = new Airtable({ apiKey: 'keyTJm4V5i1tprmMb' }).base(
+    'appKeThV2yFTVBxZj'
+  )
+
+  base('Feedback').create(
+    [
+      {
+        fields: {
+          Name: objectFormData.name,
+          Email: objectFormData.email,
+          Phone: objectFormData.phone,
+          Content: objectFormData.message,
+        },
+      },
+    ],
+    err => {
+      if (err) {
+        console.error(err)
+        return
+      }
+
+      // form.reset()
+
+      navigate('/thank-feedback')
+
+      dispatch(hideLoadingMessage())
+    }
+  )
+}
 
 const Contact = () => {
+  const dispatch = useDispatch()
+
   return (
     <section className="bgwhite p-b-60">
       <div className="bread-crumb flex-w m-b-45">
@@ -32,7 +85,10 @@ const Contact = () => {
           </div>
 
           <div className="col-md-6 p-b-30">
-            <form className="leave-comment">
+            <form
+              className="leave-comment"
+              onSubmit={e => handleSubmit(e, dispatch)}
+            >
               <h4 className="m-text26 p-t-15">Ý kiến của bạn</h4>
 
               <div className="bo4 of-hidden size15 m-b-20">
@@ -48,7 +104,7 @@ const Contact = () => {
                 <input
                   className="sizefull s-text7 p-l-22 p-r-22"
                   type="text"
-                  name="phone-number"
+                  name="phone"
                   placeholder="Số điện thoại"
                 />
               </div>
@@ -69,7 +125,10 @@ const Contact = () => {
               ></textarea>
 
               <div className="w-size25">
-                <button className="flex-c-m size2 bg1 bo-rad-23 hov1 m-text3 trans-0-4">
+                <button
+                  type="submit"
+                  className="flex-c-m size2 bg1 bo-rad-23 hov1 m-text3 trans-0-4"
+                >
                   Gửi
                 </button>
               </div>
