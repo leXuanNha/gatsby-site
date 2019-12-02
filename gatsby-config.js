@@ -3,7 +3,7 @@ module.exports = {
     title: `TekTee Zone - Áo thun cho developer`,
     description: `Những chiếc áo xịn xò và đầy ắp thông điệp của dev, mang lại cảm giác vui vẻ cả ngày và hào hứng cho mọi người biết bạn là một developer chân chính.`,
     author: `@TekTeeZone`,
-    keywords: `ao thun, áo thun, developer, it, tektee, zone, tshirt, t-shirt, shopping, software, technology, web, mobile, programmer, programming, ios, android, aothun, lập trình, lập trình viên, dev`,
+    keywords: `ao thun, áo thun, developer, it, tektee, tektee zone, lập trình viên`,
     siteUrl: 'https://tekteezone.com',
     image: '/images/metaImage.png',
   },
