@@ -119,7 +119,7 @@ const FAQPage = () => {
 
   const data = useStaticQuery(graphql`
     query cartCheckoutQuery {
-      allAirtable(filter: { table: { eq: "Tshirt" } }) {
+      allAirtable(filter: { table: { in: ["Tshirt", "Hoodie"] } }) {
         nodes {
           data {
             DisplayName

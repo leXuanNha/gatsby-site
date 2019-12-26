@@ -11,7 +11,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const resultTshirt = await graphql(`
     query tshirtDetail {
-      allAirtable(filter: { table: { eq: "Tshirt" } }) {
+      allAirtable(filter: { table: { in: ["Tshirt", "Hoodie"] } }) {
         nodes {
           data {
             PathName

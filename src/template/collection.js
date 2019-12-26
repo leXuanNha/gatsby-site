@@ -10,7 +10,7 @@ const CollectionPage = ({ pageContext: { productList, tag } }) => {
     <Layout>
       <SEO title="Sản phẩm" />
       <Tags selected={tag} />
-      <ProductList title='Áo thun unisex' data={productList} />
+      <ProductList title='Áo thun' data={productList} />
     </Layout>
   )
 }

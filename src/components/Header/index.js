@@ -49,7 +49,10 @@ class Header extends React.Component {
                 <Link to="/about/">Giới thiệu</Link>
               </li> */}
               <li>
-                <Link to="/collection/all">Sản phẩm</Link>
+                <Link to="/collection/all">Áo thun</Link>
+              </li>
+              <li>
+                <Link to="/hoodies">Hoodie</Link>
               </li>
               <li>
                 <Link to="/faqs/">FAQs</Link>
@@ -115,7 +118,10 @@ class Header extends React.Component {
                     <Link to="/about/">Giới thiệu</Link>
                   </li> */}
                   <li>
-                    <Link to="/collection/all/">Sản phẩm</Link>
+                    <Link to="/collection/all">Áo thun</Link>
+                  </li>
+                  <li>
+                    <Link to="/hoodies">Hoodie</Link>
                   </li>
                   <li>
                     <Link to="/faqs/">FAQs</Link>
@@ -170,11 +176,11 @@ class Header extends React.Component {
               <li className="item-menu-mobile">
                 <Link to="/">Trang chủ</Link>
               </li>
-              {/* <li className="item-menu-mobile">
-                <Link to="/about/">Giới thiệu</Link>
-              </li> */}
               <li className="item-menu-mobile">
-                <Link to="/collection/all/">Sản phẩm</Link>
+                <Link to="/collection/all">Áo thun</Link>
+              </li>
+              <li className="item-menu-mobile">
+                <Link to="/hoodies">Hoodie</Link>
               </li>
               <li className="item-menu-mobile">
                 <Link to="/faqs/">FAQs</Link>

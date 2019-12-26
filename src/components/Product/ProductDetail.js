@@ -9,7 +9,9 @@ import SEO from '../seo'
 import ProductItem from './ProductItem'
 import { addToCartMessage } from '../../store/actions'
 
-const SIZE_OPTIONS = ['S', 'M', 'L', 'XL']
+const TSHIRT_SIZE_OPTIONS = ['S', 'M', 'L', 'XL']
+
+const HOODIE_SIZE_OPTIONS = ['L', 'XL', 'XXL']
 
 const numberWithCommas = x => {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
@@ -89,6 +91,10 @@ const ProductDetailPage = ({ pageContext: { data } }) => {
     }
   `)
 
+  const isHoodie = data['PathName'].includes('hoodie');
+
+  const SIZE_OPTIONS = isHoodie ? HOODIE_SIZE_OPTIONS : TSHIRT_SIZE_OPTIONS;
+
   return (
     <Layout>
       <SEO title={data['DisplayName']} />
@@ -100,8 +106,8 @@ const ProductDetailPage = ({ pageContext: { data } }) => {
             <i className="fa fa-angle-right m-l-8 m-r-9" aria-hidden="true"></i>
           </Link>
 
-          <Link to="/collection/all" className="s-text26">
-            Áo thun
+          <Link to={isHoodie ? '/hoodies' : '/collection/all'} className="s-text26">
+            {isHoodie ? 'Hoodie' : 'Áo thun'}
             <i className="fa fa-angle-right m-l-8 m-r-9" aria-hidden="true"></i>
           </Link>
 
@@ -124,7 +130,7 @@ const ProductDetailPage = ({ pageContext: { data } }) => {
                   <div
                     className={`product-detail-sm-img ${
                       index === mainImageIndex ? 'active' : ''
-                    }`}
+                      }`}
                     style={{
                       backgroundImage: `url(${img.thumbnails.large.url})`,
                     }}
@@ -207,7 +213,9 @@ const ProductDetailPage = ({ pageContext: { data } }) => {
 
             <h5 className="m-text19 m-b-10 p-t-25">Mô tả</h5>
 
-            <p className="s-text23 w-s-pr m-b-35">{data['Description']}</p>
+            <p className="s-text23 w-s-pr m-b-15">{data['Description']}</p>
+
+            <p className="s-text23 w-s-pr m-b-35">Cách chọn size: tăng lên một size so với áo thun.</p>
 
             <div className="product-specific">
               <div className="product-specific-ic">
@@ -225,61 +233,66 @@ const ProductDetailPage = ({ pageContext: { data } }) => {
               </div>
             </div>
 
-            <div className="product-specific">
-              <div className="product-specific-ic">
-                <Image imgName="imgQualityIcon" />
-              </div>
-              <div className="product-specific-info">
-                <h5 className="m-text19 m-b-5">Chất lượng cao</h5>
-                <p className="s-text23">
-                  Với chất liệu 95% cotton và 5% spandex mang lại cho áo sự
-                  thoáng mát và khả năng co dãn 2 chiều, thoải mái vận động mà
-                  không có sự khó chịu nào.
+            {!isHoodie &&
+              <div className="product-specific">
+                <div className="product-specific-ic">
+                  <Image imgName="imgQualityIcon" />
+                </div>
+                <div className="product-specific-info">
+                  <h5 className="m-text19 m-b-5">Chất lượng cao</h5>
+                  <p className="s-text23">
+                    Với chất liệu 95% cotton và 5% spandex mang lại cho áo sự
+                    thoáng mát và khả năng co dãn 2 chiều, thoải mái vận động mà
+                    không có sự khó chịu nào.
                 </p>
+                </div>
               </div>
-            </div>
+            }
 
-            <div className="product-specific">
-              <div className="product-specific-ic">
-                <Image imgName="imgTShirtIcon" />
+            {!isHoodie &&
+              < div className="product-specific">
+                <div className="product-specific-ic">
+                  <Image imgName="imgTShirtIcon" />
+                </div>
+                <div className="product-specific-info">
+                  <h5 className="m-text19 m-b-5">Bảng size áo</h5>
+                  <table className="size-table">
+                    <thead>
+                      <tr>
+                        <th>Size</th>
+                        <th>S</th>
+                        <th>M</th>
+                        <th>L</th>
+                        <th>XL</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Cân nặng</td>
+                        <td>45 - 54kg</td>
+                        <td>55 - 65kg</td>
+                        <td>65 - 75kg</td>
+                        <td>70 - 78kg</td>
+                      </tr>
+                      <tr>
+                        <td>Chiều cao</td>
+                        <td>1m50 - 1m60</td>
+                        <td>1m60 - 1m69</td>
+                        <td>1m70 - 1m75</td>
+                        <td>Trên 1m75</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
-              <div className="product-specific-info">
-                <h5 className="m-text19 m-b-5">Bảng size áo</h5>
-                <table className="size-table">
-                  <thead>
-                    <tr>
-                      <th>Size</th>
-                      <th>S</th>
-                      <th>M</th>
-                      <th>L</th>
-                      <th>XL</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Cân nặng</td>
-                      <td>45 - 54kg</td>
-                      <td>55 - 65kg</td>
-                      <td>65 - 75kg</td>
-                      <td>70 - 78kg</td>
-                    </tr>
-                    <tr>
-                      <td>Chiều cao</td>
-                      <td>1m50 - 1m60</td>
-                      <td>1m60 - 1m69</td>
-                      <td>1m70 - 1m75</td>
-                      <td>Trên 1m75</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
+            }
+
           </div>
         </div>
       </div>
 
       {renderRelatedProducts(relatedProducts, data['PathName'])}
-    </Layout>
+    </Layout >
   )
 }
 

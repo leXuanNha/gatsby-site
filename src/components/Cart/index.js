@@ -27,7 +27,7 @@ const Cart = () => {
 
   const data = useStaticQuery(graphql`
     query cartQuery {
-      allAirtable(filter: { table: { eq: "Tshirt" } }) {
+      allAirtable(filter: { table: { in: ["Tshirt", "Hoodie"] } }) {
         nodes {
           data {
             DisplayName
@@ -272,21 +272,21 @@ const Cart = () => {
             </div>
           </div>
         ) : (
-          <div className="text-center">
-            <h2 className="text-center m-text16">
-              Giỏ hàng của bạn đang trống
+            <div className="text-center">
+              <h2 className="text-center m-text16">
+                Giỏ hàng của bạn đang trống
             </h2>
-            <div
-              className="size10 trans-0-4 m-t-10 m-b-10"
-              style={{ margin: '0 auto', width: 300 }}
-              onClick={() => navigate('/collection/all')}
-            >
-              <button className="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
-                Tiếp tục mua hàng
+              <div
+                className="size10 trans-0-4 m-t-10 m-b-10"
+                style={{ margin: '0 auto', width: 300 }}
+                onClick={() => navigate('/collection/all')}
+              >
+                <button className="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
+                  Tiếp tục mua hàng
               </button>
+              </div>
             </div>
-          </div>
-        )}
+          )}
       </section>
     </React.Fragment>
   )

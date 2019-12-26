@@ -39,6 +39,10 @@ module.exports = {
             baseId: `appKeThV2yFTVBxZj`,
             tableName: `Tshirt`,
           },
+          {
+            baseId: `appKeThV2yFTVBxZj`,
+            tableName: `Hoodie`,
+          },
           // We can add other bases/tables here, too!
           //{
           //baseId: `AIRTABLE_BASE_ID`,
