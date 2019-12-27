@@ -214,8 +214,8 @@ const ProductDetailPage = ({ pageContext: { data } }) => {
             <h5 className="m-text19 m-b-10 p-t-25">Mô tả</h5>
 
             <p className="s-text23 w-s-pr m-b-15">{data['Description']}</p>
-
-            <p className="s-text23 w-s-pr m-b-35">Cách chọn size: tăng lên một size so với áo thun.</p>
+            {isHoodie &&
+              <p className="s-text23 w-s-pr m-b-35">Cách chọn size: tăng lên một size so với áo thun.</p>}
 
             <div className="product-specific">
               <div className="product-specific-ic">
