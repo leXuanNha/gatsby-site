@@ -9,7 +9,7 @@ const Banner = () => (
     </h2>
 
     <span className="caption2-slide1 m-text1 t-center m-b-33">
-      New Collection 2019
+      New Collection 2020
     </span>
 
     <div className="button-slide1 wrap-btn-slide1 w-size1">
